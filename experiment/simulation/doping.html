@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Add CSS at the head of HTML file -->
+    <link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+</head>
+<body>
+	<!-- Instructions Section -->
+	<div class="columns is-centered">
+		<div class="column">
+			<div class="v-instruction-container">
+				<div class="v-collapsible is-size-5" id="task-description">
+					Instructions
+				</div>
+				<div class="v-content instruction-list">
+					<ul style="list-style: disc;">
+						<li>The plot shown is an approximate plot of temperature vs the majority charge carriers.</li>
+						<li>"a" denotes freeze off region, "b" denotes extrinsic region and "c" denotes the intrinsic region </li>
+						<li>Label the graph by typing"a", "b" or "c" (in lower case only) in the text boxes </li>
+						<li>Click "Submit" to check if the labeling is correct.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="columns is-flex-direction-row is-flex-wrap-wrap centered-div  custom-container">
+		<!-- Left Sidebar: Function Plot -->
+		<div class="column is-6-desktop is-12-tablet is-12-mobile">
+		  	<div class="v-datalist-container" style="height:100%">
+				<div class="v-datalist-title">Function Plot</div>
+					  <!-- Input field inside the plot area -->
+					  <div id="function-plot" class="v-datalist-row center-content" style="height: 400px; position: relative;">
+						<canvas id="plot1" style="width:100%; height:80%;"></canvas>
+						<input id="plot-input1" class="input-overlay input-overlay1" type="text" placeholder="Type here" />
+						<input id="plot-input2" class="input-overlay input-overlay2" type="text" placeholder="Type here" />
+						<input id="plot-input3" class="input-overlay input-overlay3" type="text" placeholder="Type here" />
+						<!-- Submit Button -->
+					</div>				
+				</div>
+				<div class="submit-quiz">
+					<button type="button" class="button is-primary" id="submit-btn">Submit</button>
+				</div>
+			</div>
+        </div>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
