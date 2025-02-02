@@ -107,3 +107,4 @@ Similarly for a p type doped device,
 Dopants are partially ionised. The majority charge carrier concentration makes up almost all of the charge carrier concentration.<br>
 Although metals can conduct at 0 Kelvin, semicondonctures cannot.<br>
 However, heavily doped semiconductors are an exception. At large dopant concentrations, impurity ion distribution causes significant fluctuations in the local electrostatic potential, which gives rise to a spacial variation in th elocal density of states distribution. When averaged over the entire lattice, the conduction band and valence band essentially merge.
+<p><img src="images/11.png" ></p> 
