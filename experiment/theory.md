@@ -1,7 +1,7 @@
 
 ## Fermi Level
 The fermi function gives the probability of a state(if it exists) being occupied at equilibrium.
-<p>f<sub>o</sub>(E) = 1 / [1 + e<sup>(E + E<sub>f</sub>) / k<sub>B</sub>T</sup>]</p>
+<p>f<sub>o</sub>(E) = 1 / [1 + e<sup>(E - E<sub>f</sub>) / k<sub>B</sub>T</sup>]</p>
 
 The parameters of the function are, f<sub>o</sub>(E) and T.
 
@@ -18,10 +18,10 @@ The width of the transition depends on temperature. The transition between high 
 
 
 ## Equilibrium Carrier Densities
-Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias. A nondegenerate semiconductor is a semiconductor whose conduction band level is much higher than the fermi-level and whose valence band level is much lower than the fermi-level. In a non degenerate semiconductor, the probability of the state at the bottom of the conduction band can be approximated to e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup>. Therefore, n, the electron density, is proportional to this value. Similarly, the probability of the state at the top of the valence band can be approximated to  e<sup>(E<sub>V</sub> + E<sub>f</sub>) / k<sub>B</sub>T</sup>. Therefore, p, the electron density, is proportional to this value.
+Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias.Non-degenerate semiconductors are defined as semiconductors for which the Fermi energy is at least 3kT away from either band edge. It essentailly is a semiconductor whose conduction band level is much higher than the fermi-level and whose valence band level is much lower than the fermi-level. In a non degenerate semiconductor, the probability of the state at the bottom of the conduction band can be approximated to e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup>. Therefore, n, the electron density, is proportional to this value. Similarly, the probability of the state at the top of the valence band can be approximated to  e<sup>(E<sub>V</sub> + E<sub>f</sub>) / k<sub>B</sub>T</sup>. Therefore, p, the electron density, is proportional to this value.
 
 <p>n  ∝  e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup></p>
-<p>p  ∝  e<sup>(E<sub>V</sub> + E<sub>f</sub>) / k<sub>B</sub>T</sup></p>
+<p>p  ∝  e<sup>(E<sub>V</sub> - E<sub>f</sub>) / k<sub>B</sub>T</sup></p>
 Where,
 n is electron density at the the bottom of the conduction band
 p is the electron density at the top of the valence band
@@ -31,9 +31,9 @@ E<sub>V</sub> is the fermi energy of the valence band
 
 ## Electron Density in the Conduction Band
 The number of electrons in a region can be calculated as the product of the number of states in that region and the fermi function(gives probability of those states being occupied). 
-<p>n<sub>o</sub> = f<sub>o</sub>(E)D<sub>C</sub>(E) dE</p>
-<p>f<sub>o</sub>(E) = 1/(1+e<sup>(E + E<sub>f</sub>) / k<sub>B</sub>T</sup>)</p>
-<p>D<sub>c</sub> = (<sup>(2m<sup>*</sup>)<sup>3/2</sup></sup> / 2π<sup>2</sup>h<sup>3</sup>) √(E - E<sub>C</sub>)</p>
+<p>n<sub>o</sub> = &#x222b;f<sub>o</sub>(E)D<sub>C</sub>(E) dE</p>
+<p>f<sub>o</sub>(E) = 1/(1+e<sup>(E - E<sub>f</sub>) / k<sub>B</sub>T</sup>)</p>
+<p>D<sub>c</sub> = (<sup>(2m<sup>*</sup>)<sup>3/2</sup></sup> / 2π<sup>2</sup>&#x210F;<sup>3</sup>) √(E - E<sub>C</sub>)</p>
  
 To calculate the electron density in the conduction band,
 <p>n<sub>o</sub> = E<sub>C</sub>n<sub>o</sub>(E) dE = E<sub>Co</sub>(E)D<sub>C</sub>(E) dE</p>
@@ -80,7 +80,7 @@ Almost all semiconductors will be nearly neutral in charge but with  strong non-
 <p><img src="images/10.png" ></p> 
 
 ### The Intrinsic Region
-Intrinsic carriers aare created by breaking covanlent bonds and exciting electrons accrossthe bandgap.<br>
+Intrinsic carriers are created by breaking covanlent bonds and exciting electrons accrossthe bandgap.<br>
 Dopants are fully ionized and the net doping density is much larger than intrinsic carrier concentration.<br>
 <p>(n<sub>i</sub><sup>2</sup>/n<sub>o</sub>) - n<sub>i</sub>+N<sub>D</sub> N<sup>&lambda;<sub> = 0</p>
 
@@ -104,6 +104,7 @@ Similarly for a p type doped device,
 <p>n<sub>o</sub> = n<sub>i</sub><sup>2</sup>/p<sub>o</sub></p>
 
 ### Freeze Out Region
+At very low temperatures (large 1/T), negligible intrinsic electron-hole-pairs (EHPs) exist (ni is very small), and the donor electrons are bound to the donor atoms. This is known as the ionization (or freeze-out) region.<br>
 Dopants are partially ionised. The majority charge carrier concentration makes up almost all of the charge carrier concentration.<br>
 Although metals can conduct at 0 Kelvin, semicondonctures cannot.<br>
 However, heavily doped semiconductors are an exception. At large dopant concentrations, impurity ion distribution causes significant fluctuations in the local electrostatic potential, which gives rise to a spacial variation in th elocal density of states distribution. When averaged over the entire lattice, the conduction band and valence band essentially merge.
