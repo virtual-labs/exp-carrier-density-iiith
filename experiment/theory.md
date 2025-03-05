@@ -2,7 +2,7 @@
 ## Fermi Level
 The fermi function gives the probability of a state(if it exists) being occupied at equilibrium.
 <div align="center">
-<image src="images/1.png" height="40px" width="auto">
+<image src="images/1.png" height="60px" width="auto">
 <span style="float: right;">(4.1)</span>
 </div>
 
@@ -44,11 +44,11 @@ E<sub>V</sub> is the fermi energy of the valence band
 ## Electron Density in the Conduction Band
 The number of electrons in a region can be calculated as the product of the number of states in that region and the fermi function(gives probability of those states being occupied). 
 <div align="center">
-<image src="images/5.png" height="40px" width="auto">
+<image src="images/5.png" height="60px" width="auto">
 <span style="float: right;">(4.5)</span>
 </div>
 <div align="center">
-<image src="images/6.png" height="40px" width="auto">
+<image src="images/6.png" height="50px" width="auto">
 <span style="float: right;">(4.6)</span>
 </div>
 <div align="center">
@@ -58,22 +58,22 @@ The number of electrons in a region can be calculated as the product of the numb
  
 To calculate the electron density in the conduction band,
 <div align="center">
-<image src="images/8.png" height="40px" width="auto">
+<image src="images/8.png" height="60px" width="auto">
 <span style="float: right;">(4.8)</span>
 </div>
 This can be approximated to 
 <div align="center">
-<image src="images/9.png" height="40px" width="auto">
+<image src="images/9.png" height="30px" width="auto">
 <span style="float: right;">(4.9)</span>
 </div>
 Here F<sub>1/2</sub> is the fermi-dirac integral. Where
 <div align="center">
-<image src="images/10.png" height="40px" width="auto">
+<image src="images/10.png" height="60px" width="auto">
 <span style="float: right;">(4.10)</span>
 </div>
 For a nondegenerate semiconductor, 
 <div align="center">
-<image src="images/11.png" height="40px" width="auto">
+<image src="images/11.png" height="60px" width="auto">
 <span style="float: right;">(4.11)</span>
 </div>
 Therefore, F<sub>1/2</sub>(F) can be approximated to eF for nondegenerate semiconductors.
@@ -90,25 +90,25 @@ Therefore, F<sub>1/2</sub>(F) can be approximated to eF for nondegenerate semico
 ## Hole Density in the Valence Band
 Similar to electron density, hole density is found to be the product of the number of states in that region and the fermi function(gives probability of those states being occupied).
 <div align="center">
-<image src="images/14.png" height="40px" width="auto">
+<image src="images/14.png" height="35px" width="auto">
 <span style="float: right;">(4.14)</span>
-</div>
+</div><br>
 <div align="center">
-<image src="images/15.png" height="40px" width="auto">
+<image src="images/15.png" height="45px" width="auto">
 <span style="float: right;">(4.15)</span>
-</div>
+</div><br>
 <div align="center">
-<image src="images/16.png" height="40px" width="auto">
+<image src="images/16.png" height="50px" width="auto">
 <span style="float: right;">(4.16)</span>
 </div>
 To calculate the electron density in the conduction band,
 <div align="center">
-<image src="images/17.png" height="40px" width="auto">
+<image src="images/17.png" height="60px" width="auto">
 <span style="float: right;">(4.17)</span>
 </div>
 This can be approximated to,
 <div align="center">
-<image src="images/18.png" height="40px" width="auto">
+<image src="images/18.png" height="30px" width="auto">
 <span style="float: right;">(4.18)</span>
 </div>
 Therefore, for a non degenerate semiconductor, F<sub>1/2</sub> can be approximated to
@@ -117,7 +117,7 @@ Therefore, for a non degenerate semiconductor, F<sub>1/2</sub> can be approximat
 <span style="float: right;">(4.19)</span>
 </div>
 <div align="center">
-<image src="images/20.png" height="40px" width="auto">
+<image src="images/20.png" height="60px" width="auto">
 <span style="float: right;">(4.20)</span>
 </div>
 ## Equilibrium Carrier Density Product 
@@ -136,7 +136,7 @@ This expression can be written as
 <span style="float: right;">(4.23)</span>
 </div>
 <div align="center">
-<image src="images/24.png" height="40px" width="auto">
+<image src="images/24.png" height="50px" width="auto">
 <span style="float: right;">(4.24)</span>
 </div>
 Where n<sub>i</sub> is the intrinsic carrier concentration and E<sub>G</sub> is the band gap.
@@ -159,11 +159,11 @@ So for an intrinsic semiconductor, where the number of electrons and holes are e
 <span style="float: right;">(4.27)</span>
 </div>
 <div align="center">
-<image src="images/28.png" height="40px" width="auto">
+<image src="images/28.png" height="60px" width="auto">
 <span style="float: right;">(4.28)</span>
 </div>
 <div align="center">
-<image src="images/29.png" height="40px" width="auto">
+<image src="images/29.png" height="60px" width="auto">
 <span style="float: right;">(4.29)</span>
 </div>
 However, there is an additional correction factor. This correction depends on the effective densities of states in the valence and conduction bands.
@@ -189,7 +189,7 @@ Almost all semiconductors will be nearly neutral in charge but with  strong non-
 Intrinsic carriers are created by breaking covanlent bonds and exciting electrons accrossthe bandgap.<br>
 Dopants are fully ionized and the net doping density is much larger than intrinsic carrier concentration.<br>
 <div align="center">
-<image src="images/31.png" height="40px" width="auto">
+<image src="images/31.png" height="45px" width="auto">
 <span style="float: right;">(4.31)</span>
 </div>
 <div align="center">
@@ -205,7 +205,7 @@ Dopants are fully ionized and the net doping density is much larger than intrins
 <span style="float: right;">(4.34)</span>
 </div>
 <div align="center">
-<image src="images/35.png" height="40px" width="auto">
+<image src="images/35.png" height="45px" width="auto">
 <span style="float: right;">(4.35)</span>
 </div>
 At higher temperatures, when semiconductors go intrinsic,the intrinsic carriers overwhelm the dopants. Devices, which rely on selective doping fail at high temperature(500k or above). However, semiconductores with larger bandgaps can operate in higher temperatures. 
@@ -214,28 +214,28 @@ At higher temperatures, when semiconductors go intrinsic,the intrinsic carriers 
 Dopants are fully ionized. The majority carrier concentration is simply equal to the dominant doping concentration. The minority carrier concentration equals n<sub>i</sub><sup>2</sup> divided by the dominant doping concentration.<br>
 For an n type doped device,
 <div align="center">
-<image src="images/36.png" height="40px" width="auto">
+<image src="images/36.png" height="30px" width="auto">
 <span style="float: right;">(4.36)</span>
 </div>
 <div align="center">
-<image src="images/37.png" height="40px" width="auto">
+<image src="images/37.png" height="30px" width="auto">
 <span style="float: right;">(4.37)</span>
 </div>
 <div align="center">
-<image src="images/35.png" height="40px" width="auto">
+<image src="images/35.png" height="50px" width="auto">
 <span style="float: right;">(4.38)</span>
 </div>
 Similarly for a p type doped device,
 <div align="center">
-<image src="images/37.png" height="40px" width="auto">
+<image src="images/37.png" height="30px" width="auto">
 <span style="float: right;">(4.39)</span>
 </div>
 <div align="center">
-<image src="images/38.png" height="40px" width="auto">
+<image src="images/38.png" height="30px" width="auto">
 <span style="float: right;">(4.40)</span>
 </div>
 <div align="center">
-<image src="images/39.png" height="40px" width="auto">
+<image src="images/39.png" height="50px" width="auto">
 <span style="float: right;">(4.41)</span>
 </div>
 
