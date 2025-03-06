@@ -31,11 +31,11 @@ The width of the transition depends on temperature. The transition between high 
 Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias.Non-degenerate semiconductors are defined as semiconductors for which the Fermi energy is at least 3kT away from either band edge. It essentailly is a semiconductor whose conduction band level is much higher than the fermi-level and whose valence band level is much lower than the fermi-level. In a non degenerate semiconductor, the probability of the state at the bottom of the conduction band can be approximated to e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup>. Therefore, n, the electron density, is proportional to this value. Similarly, the probability of the state at the top of the valence band can be approximated to  e<sup>(E<sub>V</sub> - E<sub>f</sub>) / k<sub>B</sub>T</sup>. Therefore, p, the electron density, is proportional to this value.
 
 $$
-n \alpha e^(E_{F}-E_{C}/k_{B}T)
+n \quad \alpha \quad e^{E_{F}-E_{C}/k_{B}T}
 $$
 
 $$
-p \alpha e^(E_{V}-E_{F}/k_{B}T)
+p \quad \alpha \quad e^{E_{V}-E_{F}/k_{B}T}
 $$
 
 Where,
@@ -91,7 +91,7 @@ k<sub>B</sub> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J
 &hbar; is the reduced Plank's constant whose value is 6.6*10<sup>-34</sup> J/Hz
 
 <div align="center">
-<image src="images/Fig_3.2.png" height="400px" width="auto">
+<image src="images/Fig_3.2.png" width="400px" height="auto">
 <span style="float: right;">(4.14)</span>
 </div><br>
 
@@ -211,7 +211,7 @@ Almost all semiconductors will be nearly neutral in charge but with  strong non-
 
 ## Doping and Temperature Dependence
 
-<p><img src="images/Fig_3.3.png" ></p> 
+<div align="center"><img src="images/Fig_3.3.png" width="400ps" height="auto"></div> 
 
 ### The Intrinsic Region
 Intrinsic carriers are created by breaking covanlent bonds and exciting electrons accrossthe bandgap.<br>
@@ -256,4 +256,4 @@ At very low temperatures (large 1/T), negligible intrinsic electron-hole-pairs (
 Dopants are partially ionised. The majority charge carrier concentration makes up almost all of the charge carrier concentration.<br>
 Although metals can conduct at 0 Kelvin, semicondonctures cannot.<br>
 However, heavily doped semiconductors are an exception. At large dopant concentrations, impurity ion distribution causes significant fluctuations in the local electrostatic potential, which gives rise to a spacial variation in th elocal density of states distribution. When averaged over the entire lattice, the conduction band and valence band essentially merge.
-<p><img src="images/Fig_3.4.png" ></p> 
+<div align="center"><img src="images/Fig_3.4.png" width="400ps" height="auto"></div> 
