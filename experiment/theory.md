@@ -24,6 +24,68 @@ In other words, states below the fermi level have a low probability of being emp
 
 At 0K, the particles(electrons) are at the lowest energy stae. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied(Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result th eFermi level function plot 'spreads' out more and more as the temperature increases.
 
+## Electron Density and Hole Density
+Number of electrons per c.c. in the conduction band at energy <br>
+E(i.e. between E & E+dE) = g<sub>c</sub>(E)f(E)dE
+where 
+$$
+E \geq E_{c}
+$$
+
+$$
+n = \int_{E_{c}}^{\inf} g_{c}(E)f(E)dE
+$$
+This can be approximated for
+$$
+E_{C} - E_{F} \geq 3kT
+$$
+by,
+$$
+n = N_{C}e^{E_{f}-E_{C}/k_{B}T}
+$$
+
+Number of holes per c.c. in the valence band at energy <br>
+E(i.e. between E & E+dE) = g<sub>v</sub>(E)[1-f(E)]dE
+where 
+$$
+E \leq E_{v}
+$$
+
+$$
+p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE
+$$
+This can be approximated for
+$$
+E_{F} - E_{V} \geq 3kT
+$$
+by,
+$$
+p = N_{V}e^{E_{V}-E_{f}/k_{B}T}
+$$
+
+where, N<sub>v</sub> is the effective density of stes in the valence band
+$$
+N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2}
+$$
+
+For an intrinsic material(not doped), the electron concentration is,
+$$
+n_{i} = N_{C}e^{E_{i}-E_{C}/k_{B}T}
+$$
+and the hole concentration is
+$$
+n_{i} = N_{V}e^{E_{V}-E_{i}/k_{B}T}
+$$
+
+Therefore,
+$$
+n = n_{i}e^{E_{f}-E_{i}/k_{B}T}
+$$
+and
+$$
+p = n_{i}e^{E_{i}-E_{f}/k_{B}T}
+$$
+
 
 ## Equilibrium Carrier Densities
 Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias. The electron densities are calulated by counting and adding up all the filled states. Hence, product of fermi function and DOS(Density of States) (refer to the  <a href="https://virtual-labs.github.io/exp-dos-fermi-iiith/"> previous experiment</a> for details), is taken and integrated for the required energy range. Similarly for holes, Integrating product of probability of state being empty (1-f(E)) and 

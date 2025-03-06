@@ -37,29 +37,29 @@
       "difficulty": "beginner"
     },
     {
-      "question": "3. The intrinsic carrier concentration of silicon is 9.65*10^15 m^-3. When p0 is found by dividing this value by n0, it is different from the p0 we calculated.Which one is more accurate?",
+      "question": "3. At higher temperatures T>400K, in a doped n-type semiconductor, where would the Fermi level be?",
       "answers": {
-        "a": "p₀ calculated using the intrinsic carrier concentration formula",
-        "b": "p₀ calculated using the density of states and Fermi level formulas",
-        "c": "Both methods give the same accuracy",
-        "d": "Neither method is accurate"
+        "a": "Much closer to valance band",
+        "b": " Much closer on conduction band",
+        "c": "Fermi Level becomes 0 eV",
+        "d": "In the middle of conduction and valance band"
       },
       "explanations": {
-        "a": "For silicon, the intrinsic carrier concentration relation (n₀ ⋅ p₀ = nᵢ²) holds accurately due to well-defined intrinsic properties. Experimental data confirms that using nᵢ² / n₀ for p₀ is more reliable in silicon-based materials.",
-        "b": "For silicon, the intrinsic carrier concentration relation (n₀ ⋅ p₀ = nᵢ²) holds accurately due to well-defined intrinsic properties. Experimental data confirms that using nᵢ² / n₀ for p₀ is more reliable in silicon-based materials.",
-        "c": "For silicon, the intrinsic carrier concentration relation (n₀ ⋅ p₀ = nᵢ²) holds accurately due to well-defined intrinsic properties. Experimental data confirms that using nᵢ² / n₀ for p₀ is more reliable in silicon-based materials.",
-        "d": "For silicon, the intrinsic carrier concentration relation (n₀ ⋅ p₀ = nᵢ²) holds accurately due to well-defined intrinsic properties. Experimental data confirms that using nᵢ² / n₀ for p₀ is more reliable in silicon-based materials."
+        "a": "Recall what happend to carrier concentration at high temp.",
+        "b": "Fermi level is closer to conduction band for ptype semiconductor.",
+        "c": "No. That implies Ev is negative!!",
+        "d": "Yes, as its intrinsic."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "d",
       "difficulty": "intermediate"
     },
     {
-      "question": "4. In an n-type semiconductor in the extrinsic region, given that ND = 5 × 10^16 m⁻³, Nλ = 1 × 10^15 m⁻³, and ni = 9.65 × 10^15 m⁻³, what is the hole concentration p₀?",
+      "question": "4. In an n-type semiconductor in the extrinsic region, given that ND = 5 × 10^16 m⁻³, and ni = 9.65 × 10^15 m⁻³, what is the hole concentration p₀?",
       "answers": {
         "a": "1.7 × 10^13 m⁻³",
-        "b": "1.8 × 10^13 m⁻³",
+        "b": "1.8 × 10^15 m⁻³",
         "c": "2.0 × 10^13 m⁻³",
-        "d": "1.9 × 10^13 m⁻³"
+        "d": "1.9 × 10^15 m⁻³"
       },
       "explanations": {
         "a": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",

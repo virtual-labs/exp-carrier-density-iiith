@@ -36,12 +36,12 @@
       "difficulty": "beginner"
     },
     {
-    "question": "3. Given that f0(E)=0.8 and T=300 K, What is the Fermi level Ef relative to the energy level E=0.2 eV?",
+    "question": "3. Given that f0(E)=0.8 and T=300 K, What could be the possible value of f(E) at T=320K?",
       "answers": {
-        "a": "0.197 eV",
-        "b": "0.542 eV",
-        "c": "0.236 eV",
-        "d": "0.781 eV"
+        "a": "0.1 eV",
+        "b": "0.7 eV",
+        "c": "0.82 eV",
+        "d": "0.9 eV"
       },
       "explanations": {
         "a": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
@@ -49,20 +49,20 @@
         "c": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
         "d": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))"
       },
-      "correctAnswer": "c",
+      "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
       "question": "4. Extrinsic Semiconductors conduct electricity because?",
       "answers": {
-        "a": "Atoms have very few valence electrons",
-        "b": "The valence band of the atoms is almost completely filled",
-        "c": "The valence band of the atoms is partially filled",
-        "d": "Both A and C"
+        "a": "Ionisation energy required by carrier is higher",
+        "b": "Ionisation energies of silicon atoms change",
+        "c": "Carriers ionize easily at room temperature",
+        "d": "None"
       },
       "explanations": 
-      {"a": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
-        "b": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
+      {"a": "Ionisation energy for electron and holes decreases.",
+        "b": "Silicon ionisation energy for valence electron does not change",
         "c": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
         "d": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction."},
       "correctAnswer": "c",
