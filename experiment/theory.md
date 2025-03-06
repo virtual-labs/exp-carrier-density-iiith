@@ -102,7 +102,7 @@ $$
 Dopant concentration is N<sub>D</sub> and acceptor concertation is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized latter’s concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
 The total carrier concentration is always represented by 𝑛 for free electrons and 𝑝 for free holes. Intrinsically electron-hole pairs are formed maintaining charge neutrality.<br>
 
-## Ionisatio of Dopant and Temperature Dependence
+## Ionisation of Dopant and Temperature Dependence
 
 Ionisation of dopant with increase in temperature is shown below. At 0K, there is noionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as ‘intrinsic 
 region.
