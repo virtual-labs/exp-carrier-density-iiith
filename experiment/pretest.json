@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "If Ec is the enery corresponding to conduction band and Ev is the energy corresponding to valence band. What is the fermi level of an Intrinsic semiconductor?",
+      "question": "1. If Ec is the enery corresponding to conduction band and Ev is the energy corresponding to valence band. What is the fermi level of an Intrinsic semiconductor?",
       "answers": {
         "a": "Ec",
         "b": "Ec-Ev",
@@ -19,7 +19,7 @@
       "difficulty": "intermidiate"
     },
     {
-      "question": "What is the effect of dopants in an n-type semiconductor?",
+      "question": "2. What is the effect of dopants in an n-type semiconductor?",
       "answers": {
         "a": "Increases the number of holes in the valence band",
         "b": "Increases the number of electrons in the conduction band",
@@ -36,12 +36,12 @@
       "difficulty": "beginner"
     },
     {
-    "question": "Given that f0(E)=0.8 and T=300 K, What is the Fermi level Ef relative to the energy level E=0.2 eV?",
+    "question": "3. Given that f0(E)=0.8 and T=300 K, What is the Fermi level Ef relative to the energy level E=0.2 eV?",
       "answers": {
-        "a": "0.1 eV",
-        "b": "0.5 eV",
-        "c": "0.3 eV",
-        "d": "0.7 eV"
+        "a": "0.197 eV",
+        "b": "0.542 eV",
+        "c": "0.236 eV",
+        "d": "0.781 eV"
       },
       "explanations": {
         "a": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
@@ -53,7 +53,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "Extrinsic Semiconductors conduct electricity because?",
+      "question": "4. Extrinsic Semiconductors conduct electricity because?",
       "answers": {
         "a": "Atoms have very few valence electrons",
         "b": "The valence band of the atoms is almost completely filled",

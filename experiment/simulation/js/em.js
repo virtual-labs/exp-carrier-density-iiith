@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             clearSelections("left");
             selectedLeft = img;
             img.style.border = "2px solid #4caf50"; // Highlight selected image
+            checkMatch();
         });
     });
 
@@ -52,11 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedLeft && selectedRight) {
             const leftId = selectedLeft.dataset.id;
             const rightId = selectedRight.dataset.id;
-            matches.set(leftId, rightId); // Store selections as IDs
 
-            drawLine(selectedLeft, selectedRight);
+            // Ensure only one match per left and right element
+            if (!matches.has(leftId) && !Array.from(matches.values()).includes(rightId)) {
+                matches.set(leftId, rightId); // Store selections as IDs
+                drawLine(selectedLeft, selectedRight);
+            }
+
             selectedLeft = null;
             selectedRight = null;
+            clearSelections("left");
+            clearSelections("right");
         }
     }
 
@@ -99,5 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.getElementById("result").innerText = `You got ${score} out of ${Object.keys(correctAnswers).length} correct!`;
+    });
+
+    // Refresh button functionality
+    document.getElementById("refresh").addEventListener("click", () => {
+        matches.clear(); // Clear all matches
+        svg.innerHTML = ""; // Clear all lines
+        clearSelections("left");
+        clearSelections("right");
+        document.getElementById("result").innerText = ""; // Clear result message
     });
 });

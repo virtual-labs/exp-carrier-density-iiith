@@ -7,10 +7,10 @@ f_0(E) = \frac{1}{1+e^{E-E_{f}/k_{B}T}}
 $$
 
 where
-f<sub>o</sub>(E) is the fremi function for a given energy level,<br> 
-E<sub>f</sub> is the fermi level,<br> 
-k<sub>B</sub> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K and <br>
-T is the temperature.<br>
+<b>f<sub>o</sub>(E)</b> is the fremi function for a given energy level,<br> 
+<b> E<sub>f</sub> </b> is the fermi level,<br> 
+<b> k<sub>B</sub> </b> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K and <br>
+<b> T </b> is the temperature.<br>
 
 The fermi function describes the electron density in the conduction band and the hole density in the valence band.
 
@@ -28,7 +28,7 @@ The width of the transition depends on temperature. The transition between high 
 
 
 ## Equilibrium Carrier Densities
-Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias.Non-degenerate semiconductors are defined as semiconductors for which the Fermi energy is at least 3kT away from either band edge. It essentailly is a semiconductor whose conduction band level is much higher than the fermi-level and whose valence band level is much lower than the fermi-level. In a non degenerate semiconductor, the probability of the state at the bottom of the conduction band can be approximated to e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup>. Therefore, n, the electron density, is proportional to this value. Similarly, the probability of the state at the top of the valence band can be approximated to  e<sup>(E<sub>V</sub> - E<sub>f</sub>) / k<sub>B</sub>T</sup>. Therefore, p, the electron density, is proportional to this value.
+Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias. Non-degenerate semiconductors are defined as semiconductors for which the Fermi energy is at least 3kT away from either band edge. It essentailly is a semiconductor whose conduction band level is much higher than the fermi-level and whose valence band level is much lower than the fermi-level. In a non degenerate semiconductor, the probability of the state at the bottom of the conduction band can be approximated to e<sup>(E<sub>f</sub> - E<sub>C</sub>) / k<sub>B</sub>T</sup>. Therefore, n, the electron density, is proportional to this value. Similarly, the probability of the state at the top of the valence band can be approximated to  e<sup>(E<sub>V</sub> - E<sub>f</sub>) / k<sub>B</sub>T</sup>. Therefore, p, the electron density, is proportional to this value.
 
 $$
 n \quad \alpha \quad e^{E_{F}-E_{C}/k_{B}T}
@@ -41,9 +41,9 @@ $$
 Where,
 n is electron density at the the bottom of the conduction band
 p is the electron density at the top of the valence band<br>
-E<sub>f</sub> is the fermi level<br>
-E<sub>C</sub> is the fermi energy of the conduction band<br> 
-E<sub>V</sub> is the fermi energy of the valence band<br>
+<b>E<sub>f</sub></b> is the fermi level<br>
+<b>E<sub>C</sub></b> is the fermi energy of the conduction band<br> 
+<b>E<sub>V</sub></b> is the fermi energy of the valence band<br>
 
 ## Electron Density in the Conduction Band
 
@@ -86,9 +86,9 @@ N_{C} = 2 (\frac{m_{n}^{*}k_{B}T}{2\pi\hbar^{2}})^{3/2}
 $$
 
 Here,<br>
-m<sub>n</sub><sup>*</sup> is the effective mass of electrons<br>
-k<sub>B</sub> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K  and <br>
-&hbar; is the reduced Plank's constant whose value is 6.6*10<sup>-34</sup> J/Hz
+<b> m<sub>n</sub><sup>*</sup></b> is the effective mass of electrons<br>
+<b>k<sub>B</sub></b> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K  and <br>
+<b>&hbar;</b> is the reduced Plank's constant whose value is 6.6*10<sup>-34</sup> J/Hz
 
 <div align="center">
 <image src="images/Fig_3.2.png" width="400px" height="auto">
@@ -132,13 +132,13 @@ $$
 
 Where N<sub>C</sub> is the effective density state of the condution band it is defined as
 $$
-N_{C} = 2 (\frac{m_{p}^{*}k_{B}T}{2\pi\hbar^{2}})^{3/2}
+N_{V} = 2 (\frac{m_{p}^{*}k_{B}T}{2\pi\hbar^{2}})^{3/2}
 $$
 
 Here,<br>
-m<sub>n</sub><sup>*</sup> is the effective mass of holes<br>
-k<sub>B</sub> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K  and <br>
-&hbar; is the reduced Plank's constant whose value is 6.6*10<sup>-34</sup> J/Hz
+<b>m<sub>p</sub><sup>*</sup></b> is the effective mass of holes<br>
+<b>k<sub>B</sub></b> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K  and <br>
+<b>&hbar;</b> is the reduced Plank's constant whose value is 6.6*10<sup>-34</sup> J/Hz
 
 ## Equilibrium Carrier Density Product 
 This can be found by multiplying electron and hole concentrations
@@ -227,6 +227,20 @@ $$
 And we can find p<sub>o</sub> from the formula
 $$
 p_{o} = \frac{n_{i}^{2}}{n_{o}}
+$$
+
+As the dopants are fully ionised,
+$$
+N_{D}^{+} = N_{D}
+$$
+and
+$$
+N_{A}^{-} = N_{A}
+$$
+
+To reduce the effect of intrinsic carriers at high temperature, the band gap, E<sub>G</sub>, of the semiconductor should be high
+$$
+n_{i} = \sqrt{N_{C}N_{V}} e^{\frac{E_{G}}{2k_{B}T}}
 $$
 
 At higher temperatures, when semiconductors go intrinsic,the intrinsic carriers overwhelm the dopants. Devices, which rely on selective doping fail at high temperature(500k or above). However, semiconductores with larger bandgaps can operate in higher temperatures. 

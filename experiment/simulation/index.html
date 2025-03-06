@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Match the Following</title>
   <link rel="stylesheet" href="css/em.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
-
 </head>
 <body>
     <!-- Instructions Section -->
-<div class="columns is-centered">
-    <div class="column">
-        <div class="v-instruction-container">
-            <div class="v-collapsible is-size-5" id="task-description">
-                Instructions
-            </div>
-            <div class="v-content instruction-list">
-                <ul style="list-style: disc;">
-                    <li>The following three plots are those of carrier distribution vs Energy.</li>
-                    <li>The fermi level of each of these plots is either near the midgap, below midgap or above midgap.</li>
-                    <li>Match the plots to what type of dopants are present in each semiconductor</li>
-                </ul>
+    <div class="columns is-centered">
+        <div class="column">
+            <div class="v-instruction-container">
+                <div class="v-collapsible is-size-5" id="task-description">
+                    Instructions
+                </div>
+                <div class="v-content instruction-list">
+                    <ul style="list-style: disc;">
+                        <li>The following three plots are those of carrier distribution vs Energy.</li>
+                        <li>The fermi level of each of these plots is either near the midgap, below midgap or above midgap.</li>
+                        <li>Match the plots to what type of dopants are present in each semiconductor.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <div class="container">
         <h1>Match the Following</h1>
         <div class="column1">
-          <div class="left-column">
+            <div class="left-column">
                 <p><img src="images/1.png" width="200" data-id="1"></p> 
                 <p><img src="images/2.png" width="200" data-id="2"></p>
                 <p><img src="images/3.png" width="200" data-id="3"></p>
-          </div>
-          <svg id="lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+            </div>
+            <svg id="lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
 
-          <div class="right-column">
-            <ul>
-              <li data-id="2">intrinsic</li>
-              <li data-id="3">p-type</li>
-              <li data-id="1">n-type</li>
-            </ul>
-          </div>
+            <div class="right-column">
+                <ul>
+                    <li data-id="2">intrinsic</li>
+                    <li data-id="3">p-type</li>
+                    <li data-id="1">n-type</li>
+                </ul>
+            </div>
         </div>
         <button id="submit">Submit</button>
+        <button id="refresh">Refresh</button>
         <p id="result"></p>
-		<button id="nextPage" onclick="location.href='doping.html'">Next Page</button>
-      </div>
-      
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            
-  <script src="js/em.js"></script>
+        <button id="nextPage" onclick="location.href='doping.html'">Next Page</button>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/em.js"></script>
 </body>
 </html>
