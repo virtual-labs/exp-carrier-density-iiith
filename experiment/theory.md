@@ -3,11 +3,11 @@
 The fermi function gives the probability of a state being occupied at equilibrium by an electron. The equation defining the probability vs energy at temperature T is given by the equation,
 
 $$
-f_0(E) = \frac{1}{1+e^{E-E_{f}/k_{B}T}}
+f_o(E) = \frac{1}{1+e^{E-E_{f}/k_{B}T}} \tag{3.1}
 $$
 
 where
-<b>f<sub>o</sub>(E)</b> is the fremi function for a given energy level,<br> 
+<b>f<sub>o</sub>(E)</b> is the fermi function for a given energy level,<br> 
 <b> E<sub>f</sub> </b> is the fermi level,<br> 
 <b> k<sub>B</sub> </b> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K and <br>
 <b> T </b> is the temperature.<br>
@@ -15,109 +15,107 @@ where
 The fermi level is the energy for which the probability of electron occupying the state is 1/2
 
 $$
-f_{o}(E) = \frac{1}{2}
+f_{o}(E) = \frac{1}{2}\tag{3.2}
 $$
 
 In other words, states below the fermi level have a low probability of being empty and the states above the fermi level have a low probability of being filled and states above the fermi level have a high probability of being filled
 
 <p><img src="images/Fig_3.2.png" ></p> 
 
-At 0K, the particles(electrons) are at the lowest energy stae. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied(Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result th eFermi level function plot 'spreads' out more and more as the temperature increases.
+At 0 K, the particles(electrons) are at the lowest energy stae. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied(Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result th eFermi level function plot 'spreads' out more and more as the temperature increases.
 
 ## Electron Density and Hole Density
 Number of electrons per c.c. in the conduction band at energy <br>
 E(i.e. between E & E+dE) = g<sub>c</sub>(E)f(E)dE
 where 
 $$
-E \geq E_{c}
+E \geq E_{c}\tag{3.3}
 $$
 
 $$
-n = \int_{E_{c}}^{\inf} g_{c}(E)f(E)dE
+n = \int_{E_{c}}^{\inf} g_{c}(E)f(E)dE \tag{3.4}
 $$
 This can be approximated for
 $$
-E_{C} - E_{F} \geq 3kT
+E_{C} - E_{F} \geq 3kT\tag{3.5}
 $$
 by,
 $$
-n = N_{C}e^{E_{f}-E_{C}/k_{B}T}
+n = N_{C}e^{E_{f}-E_{C}/k_{B}T}\tag{3.6}
 $$
+
+Here, N<sub>C</sub> is the effective density of states in the conduction band.
 
 Number of holes per c.c. in the valence band at energy <br>
 E(i.e. between E & E+dE) = g<sub>v</sub>(E)[1-f(E)]dE
 where 
 $$
-E \leq E_{v}
+E \leq E_{v} \tag{3.7}
 $$
 
 $$
-p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE
+p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE \tag{3.8}
 $$
 This can be approximated for
 $$
-E_{F} - E_{V} \geq 3kT
+E_{F} - E_{V} \geq 3kT \tag{3.9}
 $$
 by,
 $$
-p = N_{V}e^{E_{V}-E_{f}/k_{B}T}
+p = N_{V}e^{E_{V}-E_{f}/k_{B}T} \tag{3.10}
 $$
 
 where, N<sub>v</sub> is the effective density of stes in the valence band
 $$
-N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2}
+N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2} \tag{3.11}
 $$
 
 For an intrinsic material(not doped), the electron concentration is,
 $$
-n_{i} = N_{C}e^{E_{i}-E_{C}/k_{B}T}
+n_{i} = N_{C}e^{E_{i}-E_{C}/k_{B}T} \tag{3.12}
 $$
 and the hole concentration is
 $$
-n_{i} = N_{V}e^{E_{V}-E_{i}/k_{B}T}
+n_{i} = N_{V}e^{E_{V}-E_{i}/k_{B}T} \tag{3.13}
 $$
 
 Therefore,
 $$
-n = n_{i}e^{E_{f}-E_{i}/k_{B}T}
+n = n_{i}e^{E_{f}-E_{i}/k_{B}T} \tag{3.14}
 $$
 and
 $$
-p = n_{i}e^{E_{i}-E_{f}/k_{B}T}
+p = n_{i}e^{E_{i}-E_{f}/k_{B}T}\tag{3.15}
 $$
 
 
 ## Equilibrium Carrier Densities
+Equilibrium: A system is said to be in equilibrium, if no external inputs have been applied and the system is in a steady state. In other words, there are no net internal currents or carrier gradients in the system if left unperturbed<br>
 Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias. The electron densities are calulated by counting and adding up all the filled states. Hence, product of fermi function and DOS(Density of States) (refer to the  <a href="https://virtual-labs.github.io/exp-dos-fermi-iiith/"> previous experiment</a> for details), is taken and integrated for the required energy range. Similarly for holes, Integrating product of probability of state being empty (1-f(E)) and 
 density of states for given energy range gives holes concentration.
-
-<div align="center">
-<image src="images/Fig_3.2.png" width="400px" height="auto">
-<span style="float: right;">(4.14)</span>
-</div><br>
 
 ## Equilibrium Carrier Density Product 
 If n<sub>o</sub> and p<sub>o</sub> are the equillibrium concentration of elevtrons and holes respectively, the product is obatined by multiplying electron and hole concentrations
 $$
-n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T}
+n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.16}
 $$
 
 $$
-n_{o}p_{o} = N_{C}N_{V} e^{E_{V}-E_{C}/k_{B}T}
+n_{o}p_{o} = N_{C}N_{V} e^{E_{V}-E_{C}/k_{B}T} \tag{3.17}
 $$
 
 The carrier product in the left-hand-side of th ebove equation is the intrinsic(undoped) silicon carrier concentration n<sub>i</sub> and as we know bandgap energy 
 $$
-E_{G} = E_{V} - E_{C}
+E_{G} = E_{C} - E_{V} \tag{3.18}
 $$
 Hence,
 $$ 
-n_{i} = \sqrt{N_{C}N_{V}} e^{-E_{G}/2k_{B}T}
+n_{i} = \sqrt{N_{C}N_{V}} e^{-E_{G}/2k_{B}T}\tag{3.19}
 $$
 
 We also obtain,
 $$
-n_{i}^{2} = n_{o}p_{o}
+n_{i}^{2} = n_{o}p_{o}\tag{3.20}
 $$
 This equation describes the law of mass action and relates the carrier concentration in doped semiconductor to intrinsic semiconductor.
 
@@ -126,39 +124,42 @@ For an n-type semiconductor, the fermi level is Between the intrinsic level(E<su
 
 We found that the electron density can be written as-
 $$
-n_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T}
+n_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T}\tag{3.21}
 $$
 
 and the hole concentration can be written as-
 
 $$
-p_{o} = N_{V}e^{E_{V}-E_{F}/k_{B}T}
+p_{o} = N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.22}
 $$
 
 For an intrinsic semiconductor,
 
 $$
-n_{o} = p_{o} = n_{i}
+n_{o} = p_{o} = n_{i} \tag{3.23}
 $$
 
 or, 
 $$
-N_{C}e^{E_{F}-E_{C}/k_{B}T} = N_{V}e^{E_{V}-E_{F}/k_{B}T}
+N_{C}e^{E_{F}-E_{C}/k_{B}T} = N_{V}e^{E_{V}-E_{F}/k_{B}T}\tag{3.24}
 $$
 
 Solving for E<sub>F</sub> = E<sub>i</sub>(the intrinsic fermi level)
 
 $$
-E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{k_{B}T}{2} ln(\frac{N_{V}}{N_{C}})
+E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{k_{B}T}{2} ln(\frac{N_{V}}{N_{C}}) \tag{3.25}
 $$
 
-We find that the fermi level is not right in the middle of the conduction and the valuence band is wrong and that there is an additional correction factor. This correction depends on the effective densities of states in the valence and conduction bands.
+We find that the fermi level is not right in the middle of the conduction and the valuence band and that there is an additional correction factor. This correction depends on the effective densities of states in the valence and conduction bands.
+$$
+E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{3k_{B}T}{4} ln(\frac{m*_{p}}{m*_{n}}) \tag{3.26}
+$$
 
 ## Doping Density
-In a uniformly doped semiconductor, the net charge is zero(doped with neutral atoms). This is called charge neutrlity.
+In a uniformly doped semiconductor, the net charge is zero(doped with neutral atoms). This is called charge neutrality.
 
 $$
-p - n + N_{D}^{+} - N_{A}^{-} = 0
+\rho = q [p - n + N_{D}^{+} - N_{A}^{-}] = 0 \tag{3.27}
 $$
 
 Dopant concentration is N<sub>D</sub> and acceptor concertation is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized latter’s concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
