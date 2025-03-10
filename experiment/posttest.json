@@ -56,18 +56,18 @@
     {
       "question": "4. In an n-type semiconductor in the extrinsic region, given that ND = 5 × 10<sup>16</sup> , and ni = 9.65 × 10<sup>15</sup> m⁻³, what is the hole concentration p₀?",
       "answers": {
-        "a": "1.7 × 10<sup>13</sup> m⁻³",
-        "b": "1.8 × 10<sup>15</sup> m⁻³",
-        "c": "2.0 × 10<sup>13</sup> m⁻³",
-        "d": "1.9 × 10<sup>15</sup> m⁻³"
+        "a": "1.72 × 10<sup>13</sup> m⁻³",
+        "b": "1.86 × 10<sup>15</sup> m⁻³",
+        "c": "2.09 × 10<sup>13</sup> m⁻³",
+        "d": "1.95 × 10<sup>15</sup> m⁻³"
       },
       "explanations": {
-        "a": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
+        "a": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
         "b": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
         "c": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
         "d": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option]."
       },
-      "correctAnswer": "d",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]

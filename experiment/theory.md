@@ -45,47 +45,50 @@ n = N_{C}e^{E_{f}-E_{C}/k_{B}T}\tag{3.6}
 $$
 
 Here, N<sub>C</sub> is the effective density of states in the conduction band.
+$$
+N_{C} = 2(\frac{m^{*}_{n}k_{B}T}{2\pi\hbar^{2}})^{3/2} \tag{3.7}
+$$
 
 Number of holes per c.c. in the valence band at energy <br>
 E(i.e. between E & E+dE) = g<sub>v</sub>(E)[1-f(E)]dE
 where 
 $$
-E \leq E_{v} \tag{3.7}
+E \leq E_{v} \tag{3.8}
 $$
 
 $$
-p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE \tag{3.8}
+p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE \tag{3.9}
 $$
 This can be approximated for
 $$
-E_{F} - E_{V} \geq 3kT \tag{3.9}
+E_{F} - E_{V} \geq 3kT \tag{3.10}
 $$
 by,
 $$
-p = N_{V}e^{E_{V}-E_{f}/k_{B}T} \tag{3.10}
+p = N_{V}e^{E_{V}-E_{f}/k_{B}T} \tag{3.11}
 $$
 
 where, N<sub>v</sub> is the effective density of stes in the valence band
 $$
-N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2} \tag{3.11}
+N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2} \tag{3.12}
 $$
 
 For an intrinsic material(not doped), the electron concentration is,
 $$
-n_{i} = N_{C}e^{E_{i}-E_{C}/k_{B}T} \tag{3.12}
+n_{i} = N_{C}e^{E_{i}-E_{C}/k_{B}T} \tag{3.13}
 $$
 and the hole concentration is
 $$
-n_{i} = N_{V}e^{E_{V}-E_{i}/k_{B}T} \tag{3.13}
+n_{i} = N_{V}e^{E_{V}-E_{i}/k_{B}T} \tag{3.14}
 $$
 
 Therefore,
 $$
-n = n_{i}e^{E_{f}-E_{i}/k_{B}T} \tag{3.14}
+n = n_{i}e^{E_{f}-E_{i}/k_{B}T} \tag{3.15}
 $$
 and
 $$
-p = n_{i}e^{E_{i}-E_{f}/k_{B}T}\tag{3.15}
+p = n_{i}e^{E_{i}-E_{f}/k_{B}T}\tag{3.16}
 $$
 
 
@@ -97,25 +100,25 @@ density of states for given energy range gives holes concentration.
 ## Equilibrium Carrier Density Product 
 If n<sub>o</sub> and p<sub>o</sub> are the equillibrium concentration of elevtrons and holes respectively, the product is obatined by multiplying electron and hole concentrations
 $$
-n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.16}
+n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.17}
 $$
 
 $$
-n_{o}p_{o} = N_{C}N_{V} e^{E_{V}-E_{C}/k_{B}T} \tag{3.17}
+n_{o}p_{o} = N_{C}N_{V} e^{E_{V}-E_{C}/k_{B}T} \tag{3.18}
 $$
 
 The carrier product in the left-hand-side of th ebove equation is the intrinsic(undoped) silicon carrier concentration n<sub>i</sub> and as we know bandgap energy 
 $$
-E_{G} = E_{C} - E_{V} \tag{3.18}
+E_{G} = E_{C} - E_{V} \tag{3.19}
 $$
 Hence,
 $$ 
-n_{i} = \sqrt{N_{C}N_{V}} e^{-E_{G}/2k_{B}T}\tag{3.19}
+n_{i} = \sqrt{N_{C}N_{V}} e^{-E_{G}/2k_{B}T}\tag{3.20}
 $$
 
 We also obtain,
 $$
-n_{i}^{2} = n_{o}p_{o}\tag{3.20}
+n_{i}^{2} = n_{o}p_{o}\tag{3.21}
 $$
 This equation describes the law of mass action and relates the carrier concentration in doped semiconductor to intrinsic semiconductor.
 
@@ -124,42 +127,42 @@ For an n-type semiconductor, the fermi level is Between the intrinsic level(E<su
 
 We found that the electron density can be written as-
 $$
-n_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T}\tag{3.21}
+n_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T}\tag{3.22}
 $$
 
 and the hole concentration can be written as-
 
 $$
-p_{o} = N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.22}
+p_{o} = N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.23}
 $$
 
 For an intrinsic semiconductor,
 
 $$
-n_{o} = p_{o} = n_{i} \tag{3.23}
+n_{o} = p_{o} = n_{i} \tag{3.24}
 $$
 
 or, 
 $$
-N_{C}e^{E_{F}-E_{C}/k_{B}T} = N_{V}e^{E_{V}-E_{F}/k_{B}T}\tag{3.24}
+N_{C}e^{E_{F}-E_{C}/k_{B}T} = N_{V}e^{E_{V}-E_{F}/k_{B}T}\tag{3.25}
 $$
 
 Solving for E<sub>F</sub> = E<sub>i</sub>(the intrinsic fermi level)
 
 $$
-E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{k_{B}T}{2} ln(\frac{N_{V}}{N_{C}}) \tag{3.25}
+E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{k_{B}T}{2} ln(\frac{N_{V}}{N_{C}}) \tag{3.26}
 $$
 
-We find that the fermi level is not right in the middle of the conduction and the valuence band and that there is an additional correction factor. This correction depends on the effective densities of states in the valence and conduction bands.
+We find that the fermi level is not right in the middle of the conduction and the valence band and that there is an additional correction factor. This correction depends on the effective densities of states in the valence and conduction bands.
 $$
-E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{3k_{B}T}{4} ln(\frac{m*_{p}}{m*_{n}}) \tag{3.26}
+E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{3k_{B}T}{4} ln(\frac{m*_{p}}{m*_{n}}) \tag{3.27}
 $$
 
 ## Doping Density
 In a uniformly doped semiconductor, the net charge is zero(doped with neutral atoms). This is called charge neutrality.
 
 $$
-\rho = q [p - n + N_{D}^{+} - N_{A}^{-}] = 0 \tag{3.27}
+\rho = q [p - n + N_{D}^{+} - N_{A}^{-}] = 0 \tag{3.28}
 $$
 
 Dopant concentration is N<sub>D</sub> and acceptor concertation is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized latter’s concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
