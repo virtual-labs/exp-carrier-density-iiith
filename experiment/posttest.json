@@ -4,10 +4,10 @@
     {
       "question": "1. Given T = 300 K, m<sub>n</sub> = 1.08 × 10<sup>-31</sup> kg, m<sub>p</sub> = 0.56 × 10<sup>-31</sup> kg, h = 6.626 × 10<sup>-34</sup> J·s, E<sub>F</sub> = 0.4 eV, E<sub>C</sub> = 0.2 eV, and E<sub>V</sub> = 0.1 eV, what are the electron concentration n0 and hole concentration p0?",
       "answers": {
-        "a": "n0 = 7.3 x 10<sup>26</sup> m, p0 = 1.1<sup>-3</sup> x 10<sup>18</sup> m<sup>-3</sup>",
-        "b": "n0 = 2.5 x 10<sup>26</sup> m, p0 = 3.0<sup>-3</sup> x 10<sup>18</sup> m<sup>-3</sup>",
-        "c": "n0 = 4.1 x 10<sup>26</sup> m, p0 = 1.8<sup>-3</sup> x 10<sup>18</sup> m<sup>-3</sup>",
-        "d": "n0 = 5.2 x 10<sup>26</sup> m, p0 = 2.7<sup>-3</sup> x 10<sup>18</sup> m<sup>-3</sup>"
+        "a": "n0 = 7.3 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 1.1<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
+        "b": "n0 = 2.5 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 3.0<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
+        "c": "n0 = 4.1 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 1.8<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
+        "d": "n0 = 5.2 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 2.7<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>"
       },
       
       "explanations": {
@@ -54,7 +54,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "4. In an n-type semiconductor in the extrinsic region, given that ND = 5 × 10<sup>16</sup> , and ni = 9.65 × 10<sup>15</sup> m⁻³, what is the hole concentration p₀?",
+      "question": "4. In an n-type semiconductor in the extrinsic region, given that NN<sub>D</sub> = 5 × 10<sup>16</sup> , and n<sub>i</sub> = 9.65 × 10<sup>15</sup> m⁻³, what is the hole concentration p₀?",
       "answers": {
         "a": "1.72 × 10<sup>13</sup> m⁻³",
         "b": "1.86 × 10<sup>15</sup> m⁻³",
@@ -62,10 +62,10 @@
         "d": "1.95 × 10<sup>15</sup> m⁻³"
       },
       "explanations": {
-        "a": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
-        "b": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
-        "c": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option].",
-        "d": "Using the equations n₀ = ND - NA and p₀ = ni² / n₀, we calculate p₀ as [calculated_value] m⁻³, which matches option [correct_option]."
+        "a": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "b": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "c": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "d": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"

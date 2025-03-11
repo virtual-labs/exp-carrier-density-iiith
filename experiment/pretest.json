@@ -36,7 +36,7 @@
       "difficulty": "beginner"
     },
     {
-    "question": "3. Given that f0(E)=0.8 and T=300 K, What could be the possible value of f(E) at T=320K?",
+    "question": "3. Given that f0(E)=0.8 and T=300 K, What could be the possible value of f(E) at T ≈ 320K?",
       "answers": {
         "a": "0.1 eV",
         "b": "0.7 eV",

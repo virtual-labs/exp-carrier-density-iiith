@@ -18,19 +18,22 @@ $$
 f_{o}(E) = \frac{1}{2}\tag{3.2}
 $$
 
-In other words, states below the fermi level have a low probability of being empty and the states above the fermi level have a low probability of being filled and states above the fermi level have a high probability of being filled
+In other words, states above the fermi level have a low probability of being empty and the states below the fermi level have a low probability of being filled.
 
 <p><img src="images/Fig_3.2.png" ></p> 
 
-At 0 K, the particles(electrons) are at the lowest energy stae. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied(Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result th eFermi level function plot 'spreads' out more and more as the temperature increases.
+At 0 K, the particles (electrons) are at the lowest energy state. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied (Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result the Fermi level function plot 'spreads' out more and more as the temperature increases.
 
 ## Electron Density and Hole Density
 Number of electrons per c.c. in the conduction band at energy <br>
-E(i.e. between E & E+dE) = g<sub>c</sub>(E)f(E)dE
+$$
+E \quad(i.e. \quad between \quad E \quad & \quad E+dE) \quad = g_{c}(E)f(E)dE
+$$
 where 
 $$
 E \geq E_{c}\tag{3.3}
 $$
+and g<sub>c</sub>(E)f(E)dE corresponds to the density of states in the conduction band.
 
 $$
 n = \int_{E_{c}}^{\inf} g_{c}(E)f(E)dE \tag{3.4}
@@ -57,7 +60,7 @@ E \leq E_{v} \tag{3.8}
 $$
 
 $$
-p = \int_{0}^{E_{v}} g_{v}(E)[1-f(E)]dE \tag{3.9}
+p = \int_{-inf}^{E_{v}} g_{v}(E)[1-f(E)]dE \tag{3.9}
 $$
 This can be approximated for
 $$
@@ -123,7 +126,7 @@ $$
 This equation describes the law of mass action and relates the carrier concentration in doped semiconductor to intrinsic semiconductor.
 
 ## Intrinsic Fermi level 
-For an n-type semiconductor, the fermi level is Between the intrinsic level(E<sub>i</sub>) conduction band (E<sub>C</sub>). The number of electrons in the conduction band is much larger and donor band energy(E<sub>D</sub>) is closer to the conduction band. Similarly, the fermi level of a p-type semiconductor is between (E<sub>i</sub>) valence band (E<sub>V</sub>) . The number of holes in the valence band is much larger and acceptor band energy ((E<sub>A</sub>)) is closer to conduction band.
+For an n-type semiconductor, the fermi level is Between the intrinsic level(E<sub>i</sub>) conduction band (E<sub>C</sub>). The number of electrons in the conduction band is much larger and donor band energy(E<sub>D</sub>) is closer to the conduction band. Similarly, the fermi level of a p-type semiconductor is between (E<sub>i</sub>) valence band (E<sub>V</sub>) . The number of holes in the valence band is much larger and acceptor band energy ((E<sub>A</sub>)) is closer to valence band.
 
 We found that the electron density can be written as-
 $$
@@ -170,7 +173,7 @@ The total carrier concentration is always represented by 𝑛 for free electrons
 
 ## Ionisation of Dopant and Temperature Dependence
 
-Ionisation of dopant with increase in temperature is shown below. At 0K, there is noionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as ‘intrinsic 
+Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as ‘intrinsic 
 region.
 
 <div align="center"><img src="images/Fig_3.3.png" width="400ps" height="auto"></div> 
