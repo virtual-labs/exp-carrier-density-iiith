@@ -3,7 +3,7 @@
 ### Subject Matter Experts
 | SNo. | Name | Email | Institute | ID |
 | :---: | :---: | :---: | :---: | :---: |
-| 1 | name | email | institute | id |
+| 1 | Dr. Anshu Sarje | anshu.sarje@iiit.ac.in | IIIT-H | id |
 
 ### Developers
 | SNo. | Name | Email | Institute | ID |
