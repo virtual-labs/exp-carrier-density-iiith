@@ -56,7 +56,8 @@ body {
     padding:20px;
   }
   .right-column li {
-    width: 180px; /* Fixed width for each list item */
+    width: 30%; /* Fixed width for each list item */
+    height: "auto";
     margin: 10px auto; /* Center the items inside the column */
     padding: 10px;
     border: 1px solid #ddd;

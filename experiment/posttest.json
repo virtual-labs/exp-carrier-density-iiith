@@ -11,10 +11,10 @@
       },
       
       "explanations": {
-        "a": "Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "b": "Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "c": "Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "d": "Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n"
+        "a": "Correct. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
+        "b": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
+        "c": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
+        "d": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
@@ -28,10 +28,10 @@
         "d": "2.7 x 10<sup>22</sup> m<sup>-3</sup>"
       },
       "explanations": {
-        "a": "intrinsic carrier concentration is the square root of n0*p0",
-        "b": "intrinsic carrier concentration is the square root of n0*p0",
-        "c": "intrinsic carrier concentration is the square root of n0*p0",
-        "d": "intrinsic carrier concentration is the square root of n0*p0"
+        "a": "IIncorrect. Intrinsic carrier concentration is the square root of n0*p0",
+        "b": "Incorrect. Intrinsic carrier concentration is the square root of n0*p0",
+        "c": "Correct. Intrinsic carrier concentration is the square root of n0*p0",
+        "d": "Incorrect. Intrinsic carrier concentration is the square root of n0*p0"
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
@@ -62,10 +62,10 @@
         "d": "1.95 × 10<sup>15</sup> m⁻³"
       },
       "explanations": {
-        "a": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "b": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "c": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "d": "Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'."
+        "a": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "b": "Correct. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "c": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
+        "d": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"

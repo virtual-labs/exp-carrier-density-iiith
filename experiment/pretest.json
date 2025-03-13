@@ -10,10 +10,10 @@
         "d": "(Ec+Ev)/2"
       },
       "explanations": {
-        "a": "In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "b": "In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "c": "In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "d": "In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap."
+        "a": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
+        "b": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
+        "c": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
+        "d": "Correct. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap."
       },
       "correctAnswer": "d",
       "difficulty": "intermidiate"
@@ -27,10 +27,10 @@
         "d": "Moves the Fermi level closer to the valence band"
       },
       "explanations": {
-        "a": "In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "b": "In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "c": "In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "d": "In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier."
+        "a": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
+        "b": "Correct. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
+        "c": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
+        "d": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"
@@ -44,10 +44,10 @@
         "d": "0.9 eV"
       },
       "explanations": {
-        "a": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "b": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "c": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "d": "The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))"
+        "a": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
+        "b": "Correct. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
+        "c": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
+        "d": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))"
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
@@ -61,10 +61,10 @@
         "d": "None"
       },
       "explanations": 
-      {"a": "Ionisation energy for electron and holes decreases.",
-        "b": "Silicon ionisation energy for valence electron does not change",
-        "c": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
-        "d": "Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction."},
+      {"a": "Incorrect. Ionisation energy for electron and holes decreases.",
+        "b": "Incorrect. Silicon ionisation energy for valence electron does not change",
+        "c": "Correct. Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
+        "d": "Incorrect. Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction."},
       "correctAnswer": "c",
       "difficulty": "beginner"
     }
