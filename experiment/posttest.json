@@ -45,9 +45,9 @@
         "d": "In the middle of conduction and valance band"
       },
       "explanations": {
-        "a": "Recall what happend to carrier concentration at high temp.",
-        "b": "Fermi level is closer to conduction band for ptype semiconductor.",
-        "c": "No. That implies Ev is negative!!",
+        "a": "Incorrect. Recall what happend to carrier concentration at high temp.",
+        "b": "Incorrect. Fermi level is closer to conduction band for ptype semiconductor.",
+        "c": "Incorrect.  That implies Ev is negative!!",
         "d": "Yes, as its intrinsic."
       },
       "correctAnswer": "d",

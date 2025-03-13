@@ -1,5 +1,5 @@
 
-## Fermi Level
+### Fermi Level
 The fermi function gives the probability of a state being occupied at equilibrium by an electron. The equation defining the probability vs energy at temperature T is given by the equation,
 
 $$
@@ -24,7 +24,7 @@ In other words, states above the fermi level have a low probability of being emp
 
 At 0 K, the particles (electrons) are at the lowest energy state. Hence, all states with energy below Fermi Level (E < E<sub>f</sub>) are completely occupied (Probability = f(E) = 1). All states with E > E<sub>f</sub> are unoccupied (f(E)=0). With increase in temperature, thermal energy is gained by the particles. Hence, particles move from states below the fermi level to the states above the fermi level. As a result the Fermi level function plot 'spreads' out more and more as the temperature increases.
 
-## Electron Density and Hole Density
+### Electron Density and Hole Density
 Number of electrons per c.c. in the conduction band at energy <br>
 $$
 E \quad(i.e. \quad between \quad E \quad & \quad E+dE) \quad = g_{c}(E)f(E)dE
@@ -95,12 +95,12 @@ p = n_{i}e^{E_{i}-E_{f}/k_{B}T}\tag{3.16}
 $$
 
 
-## Equilibrium Carrier Densities
+### Equilibrium Carrier Densities
 Equilibrium: A system is said to be in equilibrium, if no external inputs have been applied and the system is in a steady state. In other words, there are no net internal currents or carrier gradients in the system if left unperturbed<br>
 Equilibrium carrier densities refer to the number of carriers in the conduction and valence band with no externally applied bias. The electron densities are calulated by counting and adding up all the filled states. Hence, product of fermi function and DOS(Density of States) (refer to the  <a href="https://virtual-labs.github.io/exp-dos-fermi-iiith/"> previous experiment</a> for details), is taken and integrated for the required energy range. Similarly for holes, Integrating product of probability of state being empty (1-f(E)) and 
 density of states for given energy range gives holes concentration.
 
-## Equilibrium Carrier Density Product 
+### Equilibrium Carrier Density Product 
 If n<sub>o</sub> and p<sub>o</sub> are the equillibrium concentration of elevtrons and holes respectively, the product is obatined by multiplying electron and hole concentrations
 $$
 n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T} \tag{3.17}
@@ -125,7 +125,7 @@ n_{i}^{2} = n_{o}p_{o}\tag{3.21}
 $$
 This equation describes the law of mass action and relates the carrier concentration in doped semiconductor to intrinsic semiconductor.
 
-## Intrinsic Fermi level 
+### Intrinsic Fermi level 
 For an n-type semiconductor, the fermi level is Between the intrinsic level(E<sub>i</sub>) conduction band (E<sub>C</sub>). The number of electrons in the conduction band is much larger and donor band energy(E<sub>D</sub>) is closer to the conduction band. Similarly, the fermi level of a p-type semiconductor is between (E<sub>i</sub>) valence band (E<sub>V</sub>) . The number of holes in the valence band is much larger and acceptor band energy ((E<sub>A</sub>)) is closer to valence band.
 
 We found that the electron density can be written as-
@@ -161,7 +161,7 @@ $$
 E_{i} = \frac{E_{C} + E_{V}}{2} + \frac{3k_{B}T}{4} ln(\frac{m*_{p}}{m*_{n}}) \tag{3.27}
 $$
 
-## Doping Density
+### Doping Density
 In a uniformly doped semiconductor, the net charge is zero(doped with neutral atoms). This is called charge neutrality.
 
 $$
@@ -171,7 +171,7 @@ $$
 Dopant concentration is N<sub>D</sub> and acceptor concertation is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized latter’s concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
 The total carrier concentration is always represented by 𝑛 for free electrons and 𝑝 for free holes. Intrinsically electron-hole pairs are formed maintaining charge neutrality.<br>
 
-## Ionisation of Dopant and Temperature Dependence
+### Ionisation of Dopant and Temperature Dependence
 
 Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as ‘intrinsic 
 region.
