@@ -18,7 +18,7 @@ $$
 f_{o}(E) = \frac{1}{2}\tag{3.2}
 $$
 
-In other words, states above the fermi level have a low probability of being empty and the states below the fermi level have a low probability of being filled.
+In other words, states above the fermi level have a low probability of being empty and the states below the fermi level have a high probability of being filled.
 
 <p><img src="images/Fig_3.2.png" ></p> 
 
@@ -27,7 +27,7 @@ At 0 K, the particles (electrons) are at the lowest energy state. Hence, all sta
 ### Electron Density and Hole Density
 Number of electrons per c.c. in the conduction band at energy <br>
 $$
-E \quad(i.e. \quad between \quad E \quad & \quad E+dE) \quad = g_{c}(E)f(E)dE
+E \quad (i.e. \quad between \quad E \quad and \quad E+dE) \quad = g_{c}(E)f(E)dE
 $$
 where 
 $$
@@ -126,7 +126,7 @@ $$
 This equation describes the law of mass action and relates the carrier concentration in doped semiconductor to intrinsic semiconductor.
 
 ### Intrinsic Fermi level 
-For an n-type semiconductor, the fermi level is Between the intrinsic level(E<sub>i</sub>) conduction band (E<sub>C</sub>). The number of electrons in the conduction band is much larger and donor band energy(E<sub>D</sub>) is closer to the conduction band. Similarly, the fermi level of a p-type semiconductor is between (E<sub>i</sub>) valence band (E<sub>V</sub>) . The number of holes in the valence band is much larger and acceptor band energy ((E<sub>A</sub>)) is closer to valence band.
+For an n-type semiconductor, the fermi level is Between the intrinsic level(E<sub>i</sub>) conduction band (E<sub>C</sub>). The number of electrons in the conduction band is much larger and donor band energy(E<sub>D</sub>) is closer to the conduction band. Similarly, for a p-type semiconductor, the fermi level  is between (E<sub>i</sub>) valence band (E<sub>V</sub>) . The number of holes in the valence band is much larger and acceptor band energy ((E<sub>A</sub>)) is closer to valence band.
 
 We found that the electron density can be written as-
 $$
@@ -173,7 +173,6 @@ The total carrier concentration is always represented by 𝑛 for free electrons
 
 ### Ionisation of Dopant and Temperature Dependence
 
-Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as ‘intrinsic 
-region.
+Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as intrinsic region. Also, in intrinsic region (T >400 K), at a particular temperature intrinsic carrier concentration becomes comparable to donor concentration (for n type) and accepector concentration(for p type).
 
 <div align="center"><img src="images/Fig_3.3.png" width="400ps" height="auto"></div> 
