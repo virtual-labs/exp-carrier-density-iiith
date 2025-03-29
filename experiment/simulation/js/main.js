@@ -62,6 +62,14 @@ function validateInputs() {
     const input3 = document.getElementById('plot-input3').value.trim();
     const resultMessage = document.getElementById('result-message');
 
+    // Check if any input is a number
+    if (!isNaN(input1) || !isNaN(input2) || !isNaN(input3)) {
+        resultMessage.style.display = 'block';
+        resultMessage.textContent = 'Error: Inputs should not be numbers';
+        resultMessage.style.color = 'red';
+        return; // Exit the function early
+    }
+
     // Check if the inputs match the desired values
     if (input1 === 'b' && input2 === 'a' && input3 === 'c') {
         resultMessage.style.display = 'block';
@@ -73,6 +81,5 @@ function validateInputs() {
         resultMessage.style.color = 'black';
     }
 }
-
 // Add event listener to the submit button
 document.getElementById('submit-btn').addEventListener('click', validateInputs);

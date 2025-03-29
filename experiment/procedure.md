@@ -1,4 +1,5 @@
 ### Procedure
+
 #### Task-1
 In the first task, the user is provided with three plots of carrier distribution vs Energy. The fermi level of each of these plots is either near the midgap, below midgap or above midgap. The user is asked to match the plots to what type of dopants are present in each semiconductor.<br>
 
