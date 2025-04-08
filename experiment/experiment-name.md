@@ -1,1 +1,1 @@
-## Carrier Concentrations (and Carriere Density)
+## Carrier Density
