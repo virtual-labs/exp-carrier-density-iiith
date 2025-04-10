@@ -81,7 +81,9 @@ $$
 $$<br>
 
 Number of holes per c.c. in the valence band at energy <br>
-E(i.e. between E & E+dE) = g<sub>v</sub>(E)[1-f(E)]dE
+$$
+E \quad (i.e. \quad between \quad E \quad and \quad E+dE) \quad = g_{v}(E)[1-f(E)]dE
+$$
 where 
 $$
 E \leq E_{v} 
