@@ -1,0 +1,3661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semiconductor Carrier Concentration Explorer - Interactive Walkthrough</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e40af 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 15px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.5), 0 0 40px rgba(99, 102, 241, 0.3); }
+        }
+
+        /* Tab System */
+        .experiment-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 6px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .experiment-content {
+            display: none;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .experiment-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Simulation Layout */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 520px;
+        }
+
+        .simulation-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            flex: 2;
+            min-height: 0;
+        }
+
+        /* Fix scrolling for challenges section */
+        #challenges .simulation-panel {
+            overflow-y: auto;
+            height: calc(100vh - 120px);
+            max-height: calc(100vh - 120px);
+        }
+
+        .simulation-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+        }
+
+        .simulation-panel h2 {
+            margin-top: 0;
+            color: #1f2937;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .chart-section {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .chart-title {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .visualization {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(to bottom, #f7fafc, #edf2f7);
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .results-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .results-display {
+            background: linear-gradient(135deg, #f8faff, #f1f5ff);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        }
+
+        .results-display h3 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .result-item {
+            background: linear-gradient(135deg, #ffffff, #fafbff);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid rgba(99, 102, 241, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .result-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+            font-family: 'Courier New', monospace;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: #718096;
+            margin-top: 3px;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .right-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .panel-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-group {
+            margin: 8px 0;
+            padding: 10px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 7px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .control-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #6366f1;
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+
+        .slider-container {
+            position: relative;
+            margin: 8px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 11px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #e2e8f0, #cbd5e1);
+            outline: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 3px 7px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 3px 7px rgba(99, 102, 241, 0.4);
+            border: 2px solid white;
+        }
+
+        .value-display {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 4px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            min-height: 16px;
+            font-size: 0.8rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            background: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Energy Band Diagram Styles */
+        .band-diagram-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .band-diagram-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B5CF6, #667eea);
+        }
+
+        .band-diagram-section .panel-title {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .band-diagram {
+            height: 140px;
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f8ff 50%, #fafbff 100%);
+            border-radius: 10px;
+            position: relative;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            margin-bottom: 12px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .energy-level {
+            position: absolute;
+            width: 85%;
+            left: 7.5%;
+            height: 3px;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .energy-level:hover {
+            transform: scaleY(1.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+
+        .conduction-band {
+            background: linear-gradient(90deg, #ff6b6b, #ff5252);
+            top: 25%;
+        }
+
+        .valence-band {
+            background: linear-gradient(90deg, #4ecdc4, #26de81);
+            bottom: 25%;
+        }
+
+        .fermi-level {
+            background: linear-gradient(90deg, #45b7d1, #667eea);
+            height: 3px;
+            border: 1px dashed #2980b9;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .band-label {
+            position: absolute;
+            right: -25px;
+            font-size: 11px;
+            font-weight: bold;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3px 8px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .energy-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .energy-value-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .energy-value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .energy-value-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .energy-value-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .energy-value-label {
+            font-size: 0.75rem;
+            color: #718096;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .energy-value-number {
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .ec-value { color: #c0392b; }
+        .ef-value { color: #2980b9; }
+        .ev-value { color: #16a085; }
+
+        /* GUIDED TOUR STYLES */
+        .tour-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 99998;
+            display: none;
+            pointer-events: none;
+        }
+
+        .tour-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .tour-spotlight {
+            position: absolute;
+            background: transparent;
+            border: 3px solid #3b82f6;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            z-index: 99999;
+            pointer-events: none;
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            animation: spotlight-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes spotlight-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+                transform: scale(1.02);
+            }
+        }
+
+        .tour-spotlight-secondary {
+            position: absolute;
+            background: transparent;
+            border: 2px solid #8b5cf6;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            z-index: 99999;
+            pointer-events: none;
+            box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            animation: secondary-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes secondary-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+                transform: scale(1.01);
+            }
+        }
+
+        .tour-popup {
+            position: fixed;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 100000;
+            min-width: 280px;
+            max-width: 380px;
+            max-height: 70vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        .tour-popup.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .tour-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .tour-step-number {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .tour-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .tour-content {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tour-challenge {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tour-challenge-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tour-challenge-title i {
+            margin-right: 8px;
+        }
+
+        .tour-challenge-content {
+            color: #78350f;
+            font-size: 0.9rem;
+        }
+
+        .tour-progress {
+            background: #f3f4f6;
+            height: 6px;
+            border-radius: 3px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .tour-progress-bar {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .tour-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .tour-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tour-btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .tour-btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .tour-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .tour-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .challenge-hint {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            color: #92400e;
+            display: none;
+        }
+
+        .challenge-hint.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight-element {
+            animation: pulse-highlight 2s ease-in-out 3;
+        }
+
+        @keyframes pulse-highlight {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            50% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+        }
+
+        .challenge-success {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 2px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #1f2937;
+            color: white;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Floating Buttons */
+        .floating-button {
+            position: fixed;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+        }
+
+        .floating-button.primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            bottom: 2rem;
+            left: 2rem;
+        }
+
+        .floating-button.tour {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            bottom: 6.5rem;
+            left: 2rem;
+        }
+
+        .tour-score {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 10002;
+            display: none;
+        }
+
+        .tour-score.active {
+            display: block;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .tour-score-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .tour-score-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* CHALLENGE TAB STYLES */
+        .challenge-stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-shadow: 0 2px 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .challenge-progress {
+            background: #f3f4f6;
+            border-radius: 8px;
+            height: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .challenge-progress-bar {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            height: 100%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        .challenge-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .challenge-section:hover {
+            border-color: #6366f1;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .challenge-section.completed {
+            border-color: #10b981;
+            background: rgba(240, 253, 244, 0.8);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+        }
+
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .challenge-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .challenge-description {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .quiz-question {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-left: 4px solid #6366f1;
+            backdrop-filter: blur(5px);
+        }
+
+        .quiz-question h4 {
+            margin: 0 0 12px 0;
+            color: #1f2937;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
+        }
+
+        .quiz-option:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+
+        .quiz-option.selected {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            color: #1e40af;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .quiz-option.correct {
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: #065f46 !important;
+            position: relative;
+        }
+
+        .quiz-option.correct::after {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #991b1b !important;
+            position: relative;
+        }
+
+        .quiz-option.incorrect::after {
+            content: '✗';
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .fill-blank-container {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 18px;
+            border-left: 4px solid #8b5cf6;
+            backdrop-filter: blur(5px);
+        }
+
+        .fill-blank-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: #1f2937;
+        }
+
+        .fill-blank-input {
+            display: inline-block;
+            width: 120px;
+            padding: 6px 12px;
+            border: 2px solid #6366f1;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin: 0 5px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .fill-blank-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            transform: scale(1.05);
+        }
+
+        .fill-blank-input.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            color: #065f46;
+        }
+
+        .fill-blank-input.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            color: #991b1b;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .matching-column {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            padding: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .matching-item {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .matching-item:hover {
+            border-color: #6366f1;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+        
+        .matching-item.selected {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            transform: scale(1.02);
+        }
+        
+        .matching-item.matched {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            opacity: 0.9;
+        }
+        
+        .matching-item.correct-match {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            animation: correctNudge 0.6s ease-out;
+        }
+        
+        .matching-item.incorrect-match {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            animation: incorrectShake 0.6s ease-out;
+        }
+
+        @keyframes correctNudge {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            25% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.4);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 15px rgba(16, 185, 129, 0.2);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        @keyframes incorrectShake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-3px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(3px);
+            }
+        }
+
+        .match-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .matching-completion {
+            grid-column: 1 / -1;
+            margin-top: 15px;
+        }
+
+        .matching-item:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .challenge-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .challenge-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .challenge-btn:hover::before {
+            left: 100%;
+        }
+
+        .challenge-btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .challenge-btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+        }
+
+        .challenge-btn-reset {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .challenge-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .challenge-btn-reset:hover {
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .challenge-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .challenge-feedback {
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .challenge-feedback.success {
+            background: rgba(240, 253, 244, 0.9);
+            color: #065f46;
+            border: 2px solid #10b981;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+            display: block;
+        }
+
+        .challenge-feedback.error {
+            background: rgba(254, 242, 242, 0.9);
+            color: #991b1b;
+            border: 2px solid #ef4444;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
+            display: block;
+        }
+
+        .challenge-hint {
+            background: rgba(254, 243, 199, 0.9);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #92400e;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .challenge-hint.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .explanation-panel {
+            background: rgba(240, 249, 255, 0.9);
+            border: 2px solid #0284c7;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .explanation-panel.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .explanation-title {
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .explanation-title i {
+            margin-right: 8px;
+        }
+
+        .explanation-content {
+            color: #075985;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .reset-controls {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .reset-controls .challenge-btn {
+            font-size: 1rem;
+            padding: 12px 30px;
+            margin: 0 10px;
+        }
+
+        .reset-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            
+            .right-panel {
+                width: 100%;
+            }
+
+            .tour-popup {
+                max-width: 90%;
+                margin: 20px;
+                min-width: 260px;
+                max-height: 60vh;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .experiment-tabs {
+                flex-direction: column;
+            }
+
+            .tour-popup {
+                min-width: auto;
+                width: 90%;
+                max-width: 320px;
+                max-height: 50vh;
+                padding: 15px;
+            }
+
+            .tour-title {
+                font-size: 1rem;
+            }
+
+            .tour-content {
+                font-size: 0.85rem;
+            }
+
+            .tour-challenge-content {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">  
+
+            
+            <!-- Navigation Tabs -->
+            <div class="experiment-tabs">
+                <button class="tab active" onclick="switchTab(this, 'simulation')" id="simulationTab">
+                    <i class="fas fa-chart-line"></i> Simulation
+                </button>
+                <button class="tab" onclick="switchTab(this, 'challenges')" id="challengesTab">
+                    <i class="fas fa-trophy"></i> Challenges
+                </button>
+            </div>
+        </div>
+
+        <!-- Simulation Tab -->
+        <div id="simulation" class="experiment-content active">
+            <div class="main-layout">
+                <div class="left-panel">
+                    <div class="chart-section">
+                        <h2 class="chart-title">Carrier Concentration vs Temperature</h2>
+                        <div class="visualization">
+                            <canvas id="carrierChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="results-section">
+                        <div class="results-display">
+                            <h3>Current Observations</h3>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <div class="result-value" id="electronConc">-</div>
+                                    <div class="result-label">Electrons (cm⁻³)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="holeConc">-</div>
+                                    <div class="result-label">Holes (cm⁻³)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="fermiLevel">-</div>
+                                    <div class="result-label">Fermi Level (eV)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="conductivity">-</div>
+                                    <div class="result-label">σ (S/cm)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <h3 class="panel-title">🎛️ Control Parameters</h3>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-thermometer-half" style="color: #f59e0b; margin-right: 8px;"></i>
+                            Temperature (K)
+                            <span class="info-tooltip">ℹ️
+                                <span class="tooltip-text">Temperature affects intrinsic carrier concentration exponentially. Higher temperature = more thermally generated carriers.</span>
+                            </span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="temperature" min="200" max="600" step="10" value="300">
+                            <div class="value-display" id="tempValue">300 K</div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-atom" style="color: #8b5cf6; margin-right: 8px;"></i>
+                            Doping Concentration (cm⁻³)
+                            <span class="info-tooltip">ℹ️
+                                <span class="tooltip-text">Doping adds impurity atoms that donate or accept electrons, dramatically changing carrier concentrations.</span>
+                            </span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="doping" min="14" max="19" step="0.1" value="16">
+                            <div class="value-display" id="dopingValue">1.0×10¹⁶</div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-layer-group" style="color: #10b981; margin-right: 8px;"></i>
+                            Doping Type
+                            <span class="info-tooltip">ℹ️
+                                <span class="tooltip-text">N-type: Donor atoms add electrons. P-type: Acceptor atoms create holes. Intrinsic: Pure semiconductor.</span>
+                            </span>
+                        </label>
+                        <select id="dopingType">
+                            <option value="n">N-type (Donor)</option>
+                            <option value="intrinsic">Intrinsic (Pure)</option>
+                            <option value="p">P-type (Acceptor)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-microchip" style="color: #3b82f6; margin-right: 8px;"></i>
+                            Semiconductor Material
+                            <span class="info-tooltip">ℹ️
+                                <span class="tooltip-text">Different materials have different band gaps, affecting intrinsic carrier concentration and electrical properties.</span>
+                            </span>
+                        </label>
+                        <select id="material">
+                            <option value="si">Silicon (Si)</option>
+                            <option value="ge">Germanium (Ge)</option>
+                            <option value="gaas">Gallium Arsenide (GaAs)</option>
+                        </select>
+                    </div>
+
+                    <!-- Energy Band Diagram Section -->
+                    <div class="band-diagram-section">
+                        <h3 class="panel-title">⚡ Energy Band Diagram</h3>
+                        <div class="band-diagram" id="bandDiagram">
+                            <div class="energy-level conduction-band" id="conductionBand">
+                                <div class="band-label">EC</div>
+                            </div>
+                            <div class="energy-level fermi-level" id="fermiBar">
+                                <div class="band-label">EF</div>
+                            </div>
+                            <div class="energy-level valence-band" id="valenceBand">
+                                <div class="band-label">EV</div>
+                            </div>
+                        </div>
+                        <div class="energy-values">
+                            <div class="energy-value-item">
+                                <div class="energy-value-label">EC (eV)</div>
+                                <div class="energy-value-number ec-value" id="ecValue">0.561</div>
+                            </div>
+                            <div class="energy-value-item">
+                                <div class="energy-value-label">EF (eV)</div>
+                                <div class="energy-value-number ef-value" id="efValue">0.000</div>
+                            </div>
+                            <div class="energy-value-item">
+                                <div class="energy-value-label">EV (eV)</div>
+                                <div class="energy-value-number ev-value" id="evValue">-0.561</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Challenges Tab -->
+        <div id="challenges" class="experiment-content">
+            <div class="simulation-panel">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #1f2937; font-size: 1.8rem;">
+                    <i class="fas fa-trophy" style="color: #f59e0b; margin-right: 8px;"></i>
+                    Semiconductor Physics Knowledge Challenges
+                </h2>
+
+                <!-- Challenge Statistics -->
+                <div class="challenge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalChallenges">5</div>
+                        <div class="stat-label">Total Challenges</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="completedChallenges">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="challengeScore">0</div>
+                        <div class="stat-label">Total Score</div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="challenge-progress">
+                    <div class="challenge-progress-bar" id="overallProgress" style="width: 0%;"></div>
+                </div>
+
+                <!-- Reset Controls -->
+                <div class="reset-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="resetAllChallenges()">
+                        <i class="fas fa-refresh"></i> Generate New Random Questions
+                    </button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="switchTab(document.getElementById('simulationTab'), 'simulation')">
+                        <i class="fas fa-arrow-left"></i> Back to Simulation
+                    </button>
+                    <p class="reset-description">
+                        Click to reset all challenges with different questions from the comprehensive question bank
+                    </p>
+                </div>
+
+                <!-- Challenge sections will be dynamically generated here -->
+                <div id="challengeSections"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
+    <button class="floating-button tour" onclick="startGuidedTour()">
+        <i class="fas fa-route"></i>
+    </button>
+
+    <button class="floating-button primary" onclick="showInfo()">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Tour Elements -->
+    <div class="tour-overlay" id="tourOverlay">
+        <div class="tour-spotlight" id="tourSpotlight"></div>
+        <div class="tour-spotlight-secondary" id="tourSpotlightSecondary" style="display: none;"></div>
+    </div>
+
+    <div class="tour-popup" id="tourPopup">
+        <div class="tour-header">
+            <div class="tour-step-number" id="tourStepNumber">1</div>
+            <h3 class="tour-title" id="tourTitle">Welcome!</h3>
+        </div>
+        <div class="tour-progress">
+            <div class="tour-progress-bar" id="tourProgressBar"></div>
+        </div>
+        <div class="tour-content" id="tourContent">
+            Let's start exploring semiconductor physics!
+        </div>
+        <div id="tourChallenge"></div>
+        <div class="tour-controls">
+            <button class="tour-btn tour-btn-secondary" id="tourPrevBtn" onclick="prevTourStep()">Previous</button>
+            <div>
+                <button class="tour-btn tour-btn-secondary" id="tourSkipBtn" onclick="skipTour()">Skip</button>
+                <button class="tour-btn tour-btn-primary" id="tourNextBtn" onclick="nextTourStep()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tour-score" id="tourScore">
+        <div class="tour-score-title">🏆 Your Progress</div>
+        <div class="tour-score-item">
+            <span>Steps Completed:</span>
+            <span id="stepsCompleted">0/15</span>
+        </div>
+        <div class="tour-score-item">
+            <span>Challenges Solved:</span>
+            <span id="challengesSolved">0/9</span>
+        </div>
+        <div class="tour-score-item">
+            <span>Score:</span>
+            <span id="totalScore">0</span>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let tourActive = false;
+        let currentTourStep = 0;
+        let tourScore = 0;
+        let challengesSolved = 0;
+
+        // Material properties database
+        const materials = {
+            si: {
+                name: 'Silicon',
+                bandGap: 1.12,
+                electronMobility: 1350,
+                holeMobility: 480,
+                Nc: 2.8e19,
+                Nv: 1.04e19,
+                ni300: 1.08e10
+            },
+            ge: {
+                name: 'Germanium',
+                bandGap: 0.66,
+                electronMobility: 3900,
+                holeMobility: 1900,
+                Nc: 1.04e19,
+                Nv: 6.0e18,
+                ni300: 2.4e13
+            },
+            gaas: {
+                name: 'GaAs',
+                bandGap: 1.42,
+                electronMobility: 8500,
+                holeMobility: 400,
+                Nc: 4.7e17,
+                Nv: 7.0e18,
+                ni300: 1.8e6
+            }
+        };
+
+        // Physical constants
+        const k = 8.617e-5; // eV/K
+        const q = 1.602e-19; // C
+
+        // DOM elements
+        const tempSlider = document.getElementById('temperature');
+        const dopingSlider = document.getElementById('doping');
+        const dopingTypeSelect = document.getElementById('dopingType');
+        const materialSelect = document.getElementById('material');
+        
+        const tempValue = document.getElementById('tempValue');
+        const dopingValue = document.getElementById('dopingValue');
+        const electronConc = document.getElementById('electronConc');
+        const holeConc = document.getElementById('holeConc');
+        const fermiLevel = document.getElementById('fermiLevel');
+        const conductivity = document.getElementById('conductivity');
+        const fermiBar = document.getElementById('fermiBar');
+        
+        // Energy level values
+        const ecValue = document.getElementById('ecValue');
+        const efValue = document.getElementById('efValue');
+        const evValue = document.getElementById('evValue');
+
+        // Chart setup
+        const canvas = document.getElementById('carrierChart');
+        const ctx = canvas.getContext('2d');
+
+        let chartData = {
+            temperatures: [],
+            electronDensities: [],
+            holeDensities: [],
+            intrinsicDensities: []
+        };
+
+        // Tour steps with comprehensive carrier concentration education
+        const tourSteps = [
+            {
+                title: "Welcome to Semiconductor Physics! 🎓",
+                content: "This interactive simulation teaches you how temperature, doping, and material properties affect carrier concentrations in semiconductors. Understanding these fundamentals is crucial for semiconductor device design and operation!",
+                target: ".container",
+                challenge: null,
+                position: "center"
+            },
+            {
+                title: "Understanding the Visualization",
+                content: "This chart shows how electron concentration (red), hole concentration (green), and intrinsic carrier concentration (gray) change with temperature. The current temperature is marked with colored dots on each curve.",
+                target: "#carrierChart",
+                challenge: null,
+                position: "right"
+            },
+            {
+                title: "🎯 Challenge 1: N-type Semiconductor Exploration",
+                content: "We're starting with an N-type semiconductor! Notice how the doping creates many more electrons than holes. Your mission: observe the dramatic difference between majority and minority carriers!",
+                target: "#dopingType",
+                challenge: {
+                    type: "observation_challenge",
+                    instruction: "📝 STEP 1: Look at the 'Doping Type' - it's set to 'N-type (Donor)'\n📝 STEP 2: Observe the Results section - see how electron concentration is much higher than hole concentration\n📝 STEP 3: Notice the Fermi level is positive (above mid-gap)!",
+                    target_element: "#dopingType",
+                    target_value: "n",
+                    hint: "🔴 N-type doping adds donor atoms that easily give up electrons, making electrons the majority carriers!",
+                    reward: 100,
+                    secondary_highlight: ".results-grid"
+                },
+                position: "left"
+            },
+            {
+                title: "🎯 Challenge 2: Discover Intrinsic Behavior",
+                content: "Now let's see what happens in a pure semiconductor without any doping. This will show you the fundamental physics behind semiconductor materials!",
+                target: "#dopingType",
+                challenge: {
+                    type: "dropdown_selection",
+                    instruction: "📝 STEP 1: Change the 'Doping Type' dropdown to 'Intrinsic (Pure)'\n📝 STEP 2: Look at the results - notice that electron concentration now equals hole concentration\n📝 STEP 3: See how the Fermi level moved to mid-gap (≈ 0 eV)!",
+                    target_element: "#dopingType",
+                    target_value: "intrinsic",
+                    hint: "🔍 In intrinsic semiconductors, every electron that jumps to the conduction band leaves behind a hole in the valence band. That's why n = p = ni!",
+                    reward: 120,
+                    secondary_highlight: ".results-grid"
+                },
+                position: "left"
+            },
+            {
+                title: "Mass Action Law Discovery! ⚖️",
+                content: "Excellent! You've discovered that in intrinsic semiconductors, electron concentration (n) equals hole concentration (p), and both equal the intrinsic carrier concentration (ni). This is the foundation of semiconductor physics!",
+                target: ".results-grid",
+                challenge: null,
+                position: "right"
+            },
+            {
+                title: "🎯 Challenge 3: Temperature's Exponential Effect",
+                content: "Temperature dramatically affects carrier concentration! Let's see this exponential relationship in action. Higher temperature means more thermal energy to excite electrons across the band gap.",
+                target: "#temperature",
+                challenge: {
+                    type: "range_target",
+                    instruction: "📝 STEP 1: Move the temperature slider to 500K\n📝 STEP 2: Watch how all carrier concentrations increase exponentially\n📝 STEP 3: Observe how the chart curves shift upward!",
+                    target_element: "#temperature",
+                    target_value: 500,
+                    tolerance: 10,
+                    hint: "🌡️ The intrinsic carrier concentration follows ni ∝ exp(-Eg/2kT). Higher T means exponentially more carriers!",
+                    reward: 150,
+                    secondary_highlight: "#carrierChart"
+                },
+                position: "left"
+            },
+            {
+                title: "Exponential Temperature Dependence! 📈",
+                content: "Amazing! You've witnessed the exponential temperature dependence of carrier concentration. This is why semiconductor devices are so temperature-sensitive and why cooling is often needed in high-power applications.",
+                target: "#carrierChart",
+                challenge: null,
+                position: "right"
+            },
+            {
+                title: "🎯 Challenge 4: Material Comparison Adventure",
+                content: "Different semiconductor materials have different band gaps, leading to vastly different carrier concentrations. Let's explore this fundamental difference!",
+                target: "#material",
+                challenge: {
+                    type: "material_comparison",
+                    instruction: "📝 STEP 1: First, note Silicon's intrinsic concentration\n📝 STEP 2: Change material to 'Germanium (Ge)'\n📝 STEP 3: See how ni increases dramatically due to smaller band gap!",
+                    target_element: "#material",
+                    target_value: "ge",
+                    hint: "🔬 Germanium has a smaller band gap (0.66 eV vs 1.12 eV for Si), making it easier for thermal energy to create electron-hole pairs!",
+                    reward: 120,
+                    secondary_highlight: "#electronConc"
+                },
+                position: "top"
+            },
+            {
+                title: "Band Gap Physics! ⚡",
+                content: "Fantastic! Germanium's smaller band gap (0.66 eV) compared to Silicon (1.12 eV) results in much higher intrinsic carrier concentration. This is why Silicon became the preferred material for most electronics - better control at room temperature!",
+                target: "#material",
+                challenge: null,
+                position: "bottom"
+            },
+            {
+                title: "🎯 Challenge 5: Return to N-type and Boost It!",
+                content: "Now let's go back to N-type doping and see how increasing the doping concentration dramatically affects carrier concentrations. We'll create a heavily doped semiconductor!",
+                target: "#dopingType",
+                challenge: {
+                    type: "doping_boost",
+                    instruction: "📝 STEP 1: Change doping type back to 'N-type (Donor)'\n📝 STEP 2: Set doping concentration to 10¹⁷ cm⁻³\n📝 STEP 3: Watch electron concentration skyrocket while holes plummet!",
+                    target_element: "#dopingType",
+                    target_value: "n",
+                    secondary_target: "#doping",
+                    secondary_value: 17,
+                    tolerance: 0.1,
+                    hint: "🔴 Higher N-type doping adds more donor atoms, flooding the material with even more electrons!",
+                    reward: 200,
+                    secondary_highlight: "#electronConc"
+                },
+                position: "left"
+            },
+            {
+                title: "Heavy N-type Doping Mastery! 🔴",
+                content: "Brilliant! You've created a heavily doped N-type semiconductor where electrons dominate completely. Notice how the electron concentration increased dramatically while hole concentration decreased even more - this is the mass action law in action: n × p = ni²!",
+                target: "#electronConc",
+                challenge: null,
+                position: "right"
+            },
+            {
+                title: "🎯 Challenge 6: The P-type Switch",
+                content: "Now for the opposite effect! Let's create a P-type semiconductor and see how the Fermi level shifts dramatically as holes become the majority carriers!",
+                target: "#dopingType",
+                challenge: {
+                    type: "fermi_level_exploration",
+                    instruction: "📝 STEP 1: Change doping type to 'P-type (Acceptor)'\n📝 STEP 2: Keep doping at high level (10¹⁷ cm⁻³)\n📝 STEP 3: Watch the Fermi level move negative as holes become majority carriers!",
+                    target_element: "#dopingType",
+                    target_value: "p",
+                    hint: "⚡ The Fermi level moves toward the band with majority carriers. P-type = holes = valence band = negative Fermi level!",
+                    reward: 180,
+                    secondary_highlight: "#bandDiagram"
+                },
+                position: "left"
+            },
+            {
+                title: "Energy Band Mastery! ⚡",
+                content: "Excellent! You've seen how the Fermi level shifts with doping type. In the band diagram, notice how the Fermi level (blue line) moves closer to the valence band in P-type material, indicating holes as majority carriers!",
+                target: "#bandDiagram",
+                challenge: null,
+                position: "left"
+            },
+            {
+                title: "🎯 Challenge 7: Extreme Doping Effects",
+                content: "Let's push the limits! Maximum doping (10¹⁹ cm⁻³) creates 'degenerate' semiconductors with metal-like properties. Explore this extreme regime!",
+                target: "#doping",
+                challenge: {
+                    type: "heavy_doping",
+                    instruction: "📝 STEP 1: Keep P-type doping selected\n📝 STEP 2: Increase doping to maximum (10¹⁹ cm⁻³)\n📝 STEP 3: Notice how the Fermi level moves deep into the valence band!",
+                    target_element: "#doping",
+                    target_value: 19,
+                    tolerance: 0.1,
+                    hint: "🚀 At extreme doping levels, the Fermi level can actually enter the energy bands - this creates 'degenerate' semiconductors!",
+                    reward: 220,
+                    secondary_highlight: "#efValue"
+                },
+                position: "left"
+            },
+            {
+                title: "🎯 Challenge 8: Temperature vs Doping Battle",
+                content: "Here's where it gets interesting! At low temperatures, doping dominates. At high temperatures, intrinsic carriers take over. Let's see this crossover!",
+                target: "#temperature",
+                challenge: {
+                    type: "temperature_doping_crossover",
+                    instruction: "📝 STEP 1: Reset temperature to 300K and doping to moderate level (10¹⁶)\n📝 STEP 2: Slowly increase temperature to 600K\n📝 STEP 3: Watch as intrinsic carriers start dominating at high temperature!",
+                    target_element: "#temperature",
+                    target_value: 600,
+                    tolerance: 10,
+                    hint: "🌡️ At high temperatures, thermal generation of electron-hole pairs can overwhelm the doping effects!",
+                    reward: 250,
+                    secondary_highlight: "#carrierChart"
+                },
+                position: "left"
+            },
+            {
+                title: "🎯 Challenge 9: GaAs - The Speed Demon",
+                content: "Time to explore Gallium Arsenide (GaAs) - the material of choice for high-speed electronics and LEDs! Discover why it's special despite its higher band gap.",
+                target: "#material",
+                challenge: {
+                    type: "gaas_exploration",
+                    instruction: "📝 STEP 1: Change material to 'Gallium Arsenide (GaAs)'\n📝 STEP 2: Reset to intrinsic with moderate temperature\n📝 STEP 3: Compare the carrier concentrations with Silicon!",
+                    target_element: "#material",
+                    target_value: "gaas",
+                    hint: "💎 GaAs has the highest band gap but superior electron mobility - perfect for high-frequency applications!",
+                    reward: 200,
+                    secondary_highlight: "#conductivity"
+                },
+                position: "top"
+            },
+            {
+                title: "🏆 Semiconductor Physics Master!",
+                content: "Congratulations! You've mastered the fundamentals of carrier concentration in semiconductors! You now understand intrinsic vs extrinsic behavior, temperature effects, doping mechanisms, Fermi level physics, and material properties. You're ready for advanced semiconductor device design!",
+                target: ".container",
+                challenge: null,
+                position: "center"
+            }
+        ];
+
+        // Challenge monitoring and completion functions
+        function startChallengeMonitoring(challenge) {
+            let challengeCompleted = false;
+            let observationTimerSet = false;
+            
+            const checkInterval = setInterval(() => {
+                if (!tourActive || !challenge || challengeCompleted) {
+                    clearInterval(checkInterval);
+                    return;
+                }
+                
+                switch (challenge.type) {
+                    case 'observation_challenge':
+                        // Auto-complete after a few seconds since it's just observation
+                        if (!observationTimerSet) {
+                            observationTimerSet = true;
+                            setTimeout(() => {
+                                if (!challengeCompleted && tourActive) {
+                                    challengeCompleted = true;
+                                    clearInterval(checkInterval);
+                                    onChallengeCompleted(challenge);
+                                }
+                            }, 4000); // Give 4 seconds to observe the N-type behavior
+                        }
+                        break;
+                        
+                    case 'dropdown_selection':
+                        const dropdownSelect = document.querySelector(challenge.target_element);
+                        challengeCompleted = dropdownSelect.value === challenge.target_value;
+                        break;
+                        
+                    case 'range_target':
+                    case 'temperature_doping_crossover':
+                    case 'heavy_doping':
+                        const rangeInput = document.querySelector(challenge.target_element);
+                        const rangeValue = parseFloat(rangeInput.value);
+                        challengeCompleted = Math.abs(rangeValue - challenge.target_value) <= (challenge.tolerance || 0.1);
+                        break;
+                        
+                    case 'material_comparison':
+                    case 'gaas_exploration':
+                        const materialSelect = document.querySelector(challenge.target_element);
+                        challengeCompleted = materialSelect.value === challenge.target_value;
+                        break;
+                        
+                    case 'doping_boost':
+                        const dopingTypeSelect = document.querySelector(challenge.target_element);
+                        const dopingSlider = document.querySelector(challenge.secondary_target);
+                        const dopingTypeCorrect = dopingTypeSelect.value === challenge.target_value;
+                        const dopingValueCorrect = Math.abs(parseFloat(dopingSlider.value) - challenge.secondary_value) <= challenge.tolerance;
+                        challengeCompleted = dopingTypeCorrect && dopingValueCorrect;
+                        break;
+                        
+                    case 'fermi_level_exploration':
+                        const fermiDopingSelect = document.querySelector(challenge.target_element);
+                        challengeCompleted = fermiDopingSelect.value === challenge.target_value;
+                        break;
+                }
+                
+                if (challengeCompleted) {
+                    clearInterval(checkInterval);
+                    onChallengeCompleted(challenge);
+                }
+            }, 500);
+        }
+
+        function onChallengeCompleted(challenge) {
+            const challengeEl = document.querySelector('.tour-challenge');
+            if (challengeEl) {
+                challengeEl.classList.add('challenge-success');
+                challengeEl.innerHTML = `
+                    <div class="tour-challenge-title">
+                        <i class="fas fa-check-circle"></i>
+                        Challenge Completed! 🎉
+                    </div>
+                    <div class="tour-challenge-content">
+                        Excellent work! You've earned ${challenge.reward} points!
+                    </div>
+                `;
+            }
+            
+            tourScore += challenge.reward;
+            challengesSolved++;
+            
+            document.getElementById('tourNextBtn').disabled = false;
+            updateTourScore();
+        }
+
+        function showHint() {
+            const hintEl = document.getElementById('challengeHint');
+            if (hintEl) {
+                hintEl.style.display = 'block';
+                hintEl.classList.add('active');
+            }
+        }
+
+        // Tour navigation functions
+        function startGuidedTour() {
+            tourActive = true;
+            currentTourStep = 0;
+            tourScore = 0;
+            challengesSolved = 0;
+            
+            // Make sure we're on simulation tab
+            switchTab(document.getElementById('simulationTab'), 'simulation');
+            
+            const overlay = document.getElementById('tourOverlay');
+            const popup = document.getElementById('tourPopup');
+            const score = document.getElementById('tourScore');
+            
+            if (overlay) {
+                overlay.style.display = 'block';
+                overlay.classList.add('active');
+            }
+            if (popup) {
+                popup.style.display = 'block';
+                popup.style.visibility = 'visible';
+            }
+            if (score) {
+                score.style.display = 'block';
+                score.classList.add('active');
+            }
+            
+            showTourStep();
+            updateTourScore();
+        }
+
+        function showTourStep() {
+            const step = tourSteps[currentTourStep];
+            const overlay = document.getElementById('tourOverlay');
+            const popup = document.getElementById('tourPopup');
+            
+            cleanupTourHighlights();
+            overlay.classList.add('active');
+            
+            document.getElementById('tourStepNumber').textContent = currentTourStep + 1;
+            document.getElementById('tourTitle').textContent = step.title;
+            document.getElementById('tourContent').textContent = step.content;
+            document.getElementById('tourProgressBar').style.width = `${((currentTourStep + 1) / tourSteps.length) * 100}%`;
+            
+            const challengeContainer = document.getElementById('tourChallenge');
+            challengeContainer.innerHTML = '';
+            
+            if (step.challenge) {
+                const challengeEl = document.createElement('div');
+                challengeEl.className = 'tour-challenge';
+                challengeEl.innerHTML = `
+                    <div class="tour-challenge-title">
+                        <i class="fas fa-bullseye"></i>
+                        Challenge
+                    </div>
+                    <div class="tour-challenge-content">
+                        ${step.challenge.instruction}
+                    </div>
+                    <div class="challenge-hint" style="display: none;" id="challengeHint">
+                        💡 Hint: ${step.challenge.hint}
+                    </div>
+                `;
+                challengeContainer.appendChild(challengeEl);
+                
+                document.getElementById('tourNextBtn').disabled = true;
+                startChallengeMonitoring(step.challenge);
+            } else {
+                document.getElementById('tourNextBtn').disabled = false;
+            }
+            
+            positionTourElements(step);
+            
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 100);
+            
+            document.getElementById('tourPrevBtn').disabled = currentTourStep === 0;
+            
+            const nextBtn = document.getElementById('tourNextBtn');
+            if (currentTourStep === tourSteps.length - 1) {
+                nextBtn.textContent = 'Finish Tour';
+                nextBtn.onclick = () => finalizeTour();
+            } else {
+                nextBtn.textContent = 'Next';
+                nextBtn.onclick = nextTourStep;
+            }
+            
+            updateTourScore();
+        }
+
+        function positionTourElements(step) {
+            const target = document.querySelector(step.target);
+            const popup = document.getElementById('tourPopup');
+            const spotlight = document.getElementById('tourSpotlight');
+            const secondarySpotlight = document.getElementById('tourSpotlightSecondary');
+            
+            if (target) {
+                const rect = target.getBoundingClientRect();
+                
+                spotlight.style.left = `${rect.left - 10}px`;
+                spotlight.style.top = `${rect.top - 10}px`;
+                spotlight.style.width = `${rect.width + 20}px`;
+                spotlight.style.height = `${rect.height + 20}px`;
+                spotlight.style.display = 'block';
+                
+                target.classList.add('highlight-element');
+                
+                if (step.challenge && step.challenge.secondary_highlight) {
+                    const secondaryTarget = document.querySelector(step.challenge.secondary_highlight);
+                    if (secondaryTarget) {
+                        const secondaryRect = secondaryTarget.getBoundingClientRect();
+                        secondarySpotlight.style.left = `${secondaryRect.left - 5}px`;
+                        secondarySpotlight.style.top = `${secondaryRect.top - 5}px`;
+                        secondarySpotlight.style.width = `${secondaryRect.width + 10}px`;
+                        secondarySpotlight.style.height = `${secondaryRect.height + 10}px`;
+                        secondarySpotlight.style.display = 'block';
+                        
+                        secondaryTarget.classList.add('highlight-element');
+                    }
+                } else {
+                    secondarySpotlight.style.display = 'none';
+                }
+                
+                const popupRect = popup.getBoundingClientRect();
+                let left, top;
+                
+                switch (step.position) {
+                    case 'right':
+                        left = rect.right + 20;
+                        top = rect.top;
+                        break;
+                    case 'left':
+                        left = rect.left - popupRect.width - 20;
+                        top = rect.top;
+                        break;
+                    case 'top':
+                        left = rect.left + (rect.width - popupRect.width) / 2;
+                        top = rect.top - popupRect.height - 20;
+                        break;
+                    case 'bottom':
+                        left = rect.left + (rect.width - popupRect.width) / 2;
+                        top = rect.bottom + 20;
+                        break;
+                    case 'center':
+                        left = (window.innerWidth - popupRect.width) / 2;
+                        top = (window.innerHeight - popupRect.height) / 2;
+                        break;
+                    default:
+                        left = rect.right + 20;
+                        top = rect.top;
+                }
+                
+                left = Math.max(20, Math.min(left, window.innerWidth - popupRect.width - 20));
+                top = Math.max(20, Math.min(top, window.innerHeight - popupRect.height - 20));
+                
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+                
+                setTimeout(() => {
+                    target.classList.remove('highlight-element');
+                    if (step.challenge && step.challenge.secondary_highlight) {
+                        const secondaryTarget = document.querySelector(step.challenge.secondary_highlight);
+                        if (secondaryTarget) {
+                            secondaryTarget.classList.remove('highlight-element');
+                        }
+                    }
+                }, 3000);
+            } else {
+                popup.style.left = '50%';
+                popup.style.top = '50%';
+                popup.style.transform = 'translate(-50%, -50%)';
+            }
+        }
+
+        function nextTourStep() {
+            if (currentTourStep < tourSteps.length - 1) {
+                currentTourStep++;
+                showTourStep();
+            }
+        }
+
+        function prevTourStep() {
+            if (currentTourStep > 0) {
+                currentTourStep--;
+                showTourStep();
+            }
+        }
+
+        function skipTour() {
+            if (confirm("Are you sure you want to skip the guided walkthrough? You'll miss important learning about semiconductor physics!")) {
+                finalizeTour(true); // Pass true to indicate skip
+            }
+        }
+
+        function finalizeTour(isSkipped = false) {
+            tourActive = false;
+            cleanupTourHighlights();
+            
+            const overlay = document.getElementById('tourOverlay');
+            const popup = document.getElementById('tourPopup');
+            const score = document.getElementById('tourScore');
+            const spotlight = document.getElementById('tourSpotlight');
+            const secondarySpotlight = document.getElementById('tourSpotlightSecondary');
+            
+            if (overlay) {
+                overlay.classList.remove('active');
+                overlay.style.display = 'none';
+            }
+            if (popup) {
+                popup.classList.remove('active');
+                popup.style.display = 'none';
+            }
+            if (score) {
+                score.classList.remove('active');
+                score.style.display = 'none';
+            }
+            if (spotlight) {
+                spotlight.style.display = 'none';
+            }
+            if (secondarySpotlight) {
+                secondarySpotlight.style.display = 'none';
+            }
+            
+            // Only show congratulations if the tour was completed normally (not skipped)
+            if (!isSkipped) {
+                setTimeout(() => {
+                    alert(`🎉 Congratulations! You've completed the semiconductor physics walkthrough!\n\n🏆 Final Score: ${tourScore} points\n🎯 Challenges Solved: ${challengesSolved}/9\n\n You now understand:\n• N-type vs intrinsic vs P-type semiconductors\n• Temperature effects on carriers\n• Majority vs minority carriers\n• Fermi level physics\n• Material properties comparison\n• Mass action law (np = ni²)\n• Heavy doping and degenerate semiconductors\n\nYou're ready for advanced semiconductor engineering!`);
+                }, 300);
+            }
+        }
+
+        function cleanupTourHighlights() {
+            document.querySelectorAll('.highlight-element').forEach(el => {
+                el.classList.remove('highlight-element');
+            });
+            
+            const secondarySpotlight = document.getElementById('tourSpotlightSecondary');
+            if (secondarySpotlight) {
+                secondarySpotlight.style.display = 'none';
+            }
+        }
+
+        function updateTourScore() {
+            document.getElementById('stepsCompleted').textContent = `${currentTourStep + 1}/${tourSteps.length}`;
+            document.getElementById('challengesSolved').textContent = `${challengesSolved}/9`;
+            document.getElementById('totalScore').textContent = tourScore;
+        }
+
+        // Physics calculation functions
+        function calculateCarrierConcentrations() {
+            const T = parseFloat(tempSlider.value);
+            const dopingLog = parseFloat(dopingSlider.value);
+            const dopingConc = Math.pow(10, dopingLog);
+            const dopingType = dopingTypeSelect.value;
+            const material = materials[materialSelect.value];
+
+            const ni = material.ni300 * Math.pow(T/300, 1.5) * Math.exp(-material.bandGap/(2*k) * (1/T - 1/300));
+            
+            let n, p, EF;
+
+            if (dopingType === 'intrinsic') {
+                n = ni;
+                p = ni;
+                EF = 0;
+            } else if (dopingType === 'n') {
+                const discriminant = dopingConc * dopingConc + 4 * ni * ni;
+                n = (dopingConc + Math.sqrt(discriminant)) / 2;
+                p = ni * ni / n;
+                EF = k * T * Math.log(n / ni);
+            } else if (dopingType === 'p') {
+                const discriminant = dopingConc * dopingConc + 4 * ni * ni;
+                p = (dopingConc + Math.sqrt(discriminant)) / 2;
+                n = ni * ni / p;
+                EF = -k * T * Math.log(p / ni);
+            }
+
+            const sigma = q * (n * material.electronMobility + p * material.holeMobility);
+
+            const Ei = 0;
+            const EC = Ei + material.bandGap / 2;
+            const EV = Ei - material.bandGap / 2;
+            const EF_absolute = Ei + EF;
+
+            return { n, p, EF, sigma, ni, EC, EV, EF_absolute };
+        }
+
+        function formatScientific(num) {
+            if (num === 0) return '0';
+            const exponent = Math.floor(Math.log10(Math.abs(num)));
+            const mantissa = num / Math.pow(10, exponent);
+            return `${mantissa.toFixed(1)}×10<sup>${exponent}</sup>`;
+        }
+
+        function updateDisplay() {
+            const T = parseFloat(tempSlider.value);
+            const dopingLog = parseFloat(dopingSlider.value);
+            const dopingConc = Math.pow(10, dopingLog);
+
+            tempValue.textContent = `${T} K`;
+            dopingValue.innerHTML = formatScientific(dopingConc);
+
+            const results = calculateCarrierConcentrations();
+            
+            electronConc.innerHTML = formatScientific(results.n);
+            holeConc.innerHTML = formatScientific(results.p);
+            fermiLevel.textContent = `${results.EF.toFixed(3)} eV`;
+            conductivity.innerHTML = formatScientific(results.sigma);
+
+            ecValue.textContent = `${results.EC.toFixed(3)}`;
+            efValue.textContent = `${results.EF_absolute.toFixed(3)}`;
+            evValue.textContent = `${results.EV.toFixed(3)}`;
+
+            const fermiPosition = 50 - (results.EF / materials[materialSelect.value].bandGap) * 50;
+            fermiBar.style.top = `${Math.max(25, Math.min(75, fermiPosition))}%`;
+
+            generateChartData();
+            updateChart();
+        }
+
+        function generateChartData() {
+            const currentDoping = parseFloat(dopingSlider.value);
+            const currentDopingType = dopingTypeSelect.value;
+            const currentMaterial = materialSelect.value;
+            
+            chartData.temperatures = [];
+            chartData.electronDensities = [];
+            chartData.holeDensities = [];
+            chartData.intrinsicDensities = [];
+
+            for (let T = 200; T <= 600; T += 10) {
+                const material = materials[currentMaterial];
+                const ni = material.ni300 * Math.pow(T/300, 1.5) * Math.exp(-material.bandGap/(2*k) * (1/T - 1/300));
+                
+                let n, p;
+                const dopingConc = Math.pow(10, currentDoping);
+                
+                if (currentDopingType === 'intrinsic') {
+                    n = ni;
+                    p = ni;
+                } else if (currentDopingType === 'n') {
+                    const discriminant = dopingConc * dopingConc + 4 * ni * ni;
+                    n = (dopingConc + Math.sqrt(discriminant)) / 2;
+                    p = ni * ni / n;
+                } else if (currentDopingType === 'p') {
+                    const discriminant = dopingConc * dopingConc + 4 * ni * ni;
+                    p = (dopingConc + Math.sqrt(discriminant)) / 2;
+                    n = ni * ni / p;
+                }
+                
+                chartData.temperatures.push(T);
+                chartData.electronDensities.push(Math.log10(n));
+                chartData.holeDensities.push(Math.log10(p));
+                chartData.intrinsicDensities.push(Math.log10(ni));
+            }
+        }
+
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+
+        function updateChart() {
+            resizeCanvas();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const padding = 60;
+            const chartWidth = canvas.width - 2 * padding;
+            const chartHeight = canvas.height - 2 * padding;
+            
+            const allData = [...chartData.electronDensities, ...chartData.holeDensities, ...chartData.intrinsicDensities];
+            const minY = Math.floor(Math.min(...allData));
+            const maxY = Math.ceil(Math.max(...allData));
+            const rangeY = maxY - minY;
+            
+            const minTemp = Math.min(...chartData.temperatures);
+            const maxTemp = Math.max(...chartData.temperatures);
+            const rangeTemp = maxTemp - minTemp;
+            
+            // Draw axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+            
+            // Draw grid and labels
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            ctx.fillStyle = '#000';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'right';
+            
+            for (let i = 0; i <= 8; i++) {
+                const yValue = minY + (rangeY * i / 8);
+                const y = canvas.height - padding - (chartHeight * i / 8);
+                
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+                
+                // Draw "10" in normal font
+                ctx.font = '10px Arial';
+                ctx.fillText('10', padding - 17, y + 3);
+                
+                // Draw the exponent in smaller font as superscript
+                ctx.font = '10px Arial';
+                ctx.fillText(yValue.toFixed(0), padding - 8, y - 2);
+                
+                // Reset font for next labels
+                ctx.font = '10px Arial';
+            }
+            
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 8; i++) {
+                const tempValue = minTemp + (rangeTemp * i / 8);
+                const x = padding + (chartWidth * i / 8);
+                
+                ctx.beginPath();
+                ctx.moveTo(x, padding);
+                ctx.lineTo(x, canvas.height - padding);
+                ctx.stroke();
+                
+                ctx.fillText(`${tempValue.toFixed(0)}K`, x, canvas.height - padding + 15);
+            }
+            
+            // Axis titles
+            ctx.fillStyle = '#000';
+            ctx.font = '12px Arial';
+            ctx.fillText('Temperature (K)', canvas.width / 2, canvas.height - 5);
+            
+            ctx.save();
+            ctx.translate(15, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Carrier Density (cm⁻³)', 0, 0);
+            ctx.restore();
+            
+            // Draw data lines
+            function drawLine(data, color, lineWidth = 2.5) {
+                if (data.length === 0) return;
+                
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                ctx.beginPath();
+                
+                for (let i = 0; i < data.length; i++) {
+                    const temp = chartData.temperatures[i];
+                    const x = padding + (chartWidth * (temp - minTemp) / rangeTemp);
+                    const y = canvas.height - padding - (chartHeight * (data[i] - minY) / rangeY);
+                    
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                // Highlight current temperature
+                const currentTemp = parseFloat(tempSlider.value);
+                let currentValue;
+                let exactIndex = chartData.temperatures.indexOf(currentTemp);
+                
+                if (exactIndex === -1) {
+                    for (let i = 0; i < chartData.temperatures.length - 1; i++) {
+                        if (chartData.temperatures[i] <= currentTemp && chartData.temperatures[i + 1] >= currentTemp) {
+                            const t1 = chartData.temperatures[i];
+                            const t2 = chartData.temperatures[i + 1];
+                            const v1 = data[i];
+                            const v2 = data[i + 1];
+                            const factor = (currentTemp - t1) / (t2 - t1);
+                            currentValue = v1 + factor * (v2 - v1);
+                            break;
+                        }
+                    }
+                } else {
+                    currentValue = data[exactIndex];
+                }
+                
+                if (currentValue !== undefined) {
+                    const x = padding + (chartWidth * (currentTemp - minTemp) / rangeTemp);
+                    const y = canvas.height - padding - (chartHeight * (currentValue - minY) / rangeY);
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            }
+            
+            drawLine(chartData.electronDensities, '#ff4757');
+            drawLine(chartData.holeDensities, '#2ed573');
+            drawLine(chartData.intrinsicDensities, '#57606f', 1.5);
+            
+            // Legend
+            const legendX = canvas.width - 140;
+            const legendY = padding - 60;
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillRect(legendX - 5, legendY - 5, 125, 65);
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(legendX - 5, legendY - 5, 125, 65);
+            
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            
+            ctx.fillStyle = '#ff4757';
+            ctx.fillRect(legendX, legendY + 10, 12, 2);
+            ctx.fillStyle = '#333';
+            ctx.fillText('Electrons (n)', legendX + 17, legendY + 14);
+            
+            ctx.fillStyle = '#2ed573';
+            ctx.fillRect(legendX, legendY + 30, 12, 2);
+            ctx.fillStyle = '#333';
+            ctx.fillText('Holes (p)', legendX + 17, legendY + 34);
+            
+            ctx.fillStyle = '#57606f';
+            ctx.fillRect(legendX, legendY + 50, 12, 2);
+            ctx.fillStyle = '#333';
+            ctx.fillText('Intrinsic (ni)', legendX + 17, legendY + 54);
+        }
+
+        // Challenge system functionality
+        let challengeState = {
+            completed: new Set(),
+            answers: {}
+        };
+
+        // Enhanced question bank for carrier concentration
+        const questionBank = {
+            rapidFire: [
+                { 
+                    q: "Higher temperature increases intrinsic carrier concentration exponentially.", 
+                    a: true,
+                    explanation: "ni increases exponentially with temperature due to thermal generation of electron-hole pairs: ni ∝ exp(-Eg/2kT).",
+                    hint: "Think about how thermal energy affects band gap crossing."
+                },
+                { 
+                    q: "In an intrinsic semiconductor, electron concentration equals hole concentration.", 
+                    a: true,
+                    explanation: "In intrinsic materials, every electron promoted to conduction band leaves a hole in valence band, so n = p = ni.",
+                    hint: "Remember that electrons and holes are created in pairs."
+                },
+                { 
+                    q: "N-type doping increases hole concentration.", 
+                    a: false,
+                    explanation: "N-type doping increases electron concentration but decreases hole concentration due to mass action law: np = ni².",
+                    hint: "Remember np = ni² - if n increases, what happens to p?"
+                },
+                { 
+                    q: "The Fermi level moves toward the conduction band in N-type semiconductors.", 
+                    a: true,
+                    explanation: "Higher electron concentration in N-type materials pushes Fermi level toward conduction band: EF = Ei + kT×ln(n/ni).",
+                    hint: "Fermi level indicates probability of occupation - more electrons means higher energy."
+                },
+                { 
+                    q: "Silicon has higher intrinsic carrier concentration than GaAs at 300K.", 
+                    a: true,
+                    explanation: "Silicon has ni ≈ 1×10¹⁰ cm⁻³ while GaAs has ni ≈ 2×10⁶ cm⁻³ at 300K due to different band gaps.",
+                    hint: "Compare the band gap values and their effect on thermal generation."
+                },
+                { 
+                    q: "Heavy doping can make the Fermi level enter the energy bands.", 
+                    a: true,
+                    explanation: "In degenerate doping (>10¹⁸ cm⁻³), the Fermi level can move into conduction or valence bands.",
+                    hint: "Consider what happens when doping concentration exceeds effective density of states."
+                },
+                { 
+                    q: "Germanium has a larger band gap than Silicon.", 
+                    a: false,
+                    explanation: "Germanium has Eg = 0.66 eV while Silicon has Eg = 1.12 eV at 300K.",
+                    hint: "Smaller band gap means easier thermal excitation and higher ni."
+                },
+                { 
+                    q: "At very high temperatures, intrinsic behavior dominates over doping.", 
+                    a: true,
+                    explanation: "At high T, exponentially increasing ni can exceed doping levels, making material behave intrinsically.",
+                    hint: "ni increases exponentially with T while doping stays constant."
+                },
+                { 
+                    q: "The mass action law (np = ni²) only applies to intrinsic semiconductors.", 
+                    a: false,
+                    explanation: "Mass action law np = ni² applies to all semiconductors in thermal equilibrium, intrinsic or doped.",
+                    hint: "This is a fundamental law that always holds in equilibrium."
+                },
+                { 
+                    q: "P-type doping creates mobile holes by accepting electrons.", 
+                    a: true,
+                    explanation: "Acceptor atoms in P-type materials accept electrons from valence band, creating mobile holes.",
+                    hint: "Acceptors 'accept' electrons, leaving behind holes."
+                }
+            ],
+            
+            mcq: [
+                {
+                    q: "What happens to intrinsic carrier concentration when temperature doubles from 300K to 600K?",
+                    options: ["Doubles", "Increases by factor of 100-1000", "Stays the same", "Decreases"],
+                    correct: 1,
+                    explanation: "ni increases exponentially with temperature: ni ∝ exp(-Eg/2kT). Doubling temperature typically increases ni by 100-1000×.",
+                    hint: "Consider the exponential relationship with temperature."
+                },
+                {
+                    q: "Which material has the highest electron mobility?",
+                    options: ["Silicon", "Germanium", "GaAs", "All are equal"],
+                    correct: 2,
+                    explanation: "GaAs has the highest electron mobility (8500 cm²/V·s) compared to Si (1350) and Ge (3900).",
+                    hint: "GaAs is used in high-speed electronics for this reason."
+                },
+                {
+                    q: "In heavily doped n-type silicon (10¹⁸ cm⁻³), the electron concentration is approximately:",
+                    options: ["10¹⁰ cm⁻³", "10¹⁸ cm⁻³", "10²⁶ cm⁻³", "Independent of doping"],
+                    correct: 1,
+                    explanation: "In heavily doped semiconductors, carrier concentration approximately equals doping concentration: n ≈ Nd.",
+                    hint: "For high doping levels, nearly all dopants are ionized."
+                },
+                {
+                    q: "The Fermi level in intrinsic semiconductors is located:",
+                    options: ["At conduction band", "At valence band", "Near mid-gap", "Outside the bands"],
+                    correct: 2,
+                    explanation: "In intrinsic semiconductors, the Fermi level is at the intrinsic level Ei, typically near mid-gap.",
+                    hint: "Intrinsic means symmetric electron and hole populations."
+                },
+                {
+                    q: "What limits carrier concentration at very high doping levels?",
+                    options: ["Temperature", "Solubility limit", "Band gap", "Material purity"],
+                    correct: 1,
+                    explanation: "Solubility limits prevent infinite doping - dopant atoms have maximum solubility in host crystal.",
+                    hint: "There's a physical limit to how many dopant atoms can fit in the crystal."
+                }
+            ],
+            
+            fillBlanks: [
+                {
+                    q: "The mass action law states that n × p = ____",
+                    blanks: ["ni²", "ni^2"],
+                    explanation: "This fundamental law: np = ni² maintains charge neutrality in thermal equilibrium.",
+                    hint: "This relationship holds for both intrinsic and extrinsic semiconductors."
+                },
+                {
+                    q: "In an intrinsic semiconductor at equilibrium, n = p = ____",
+                    blanks: ["ni"],
+                    explanation: "In intrinsic semiconductors, electron and hole concentrations are equal to intrinsic concentration.",
+                    hint: "Intrinsic means no doping, so carriers come only from thermal generation."
+                },
+                {
+                    q: "The intrinsic carrier concentration depends exponentially on ____ and ____",
+                    blanks: ["temperature", "band gap", "bandgap"],
+                    explanation: "ni ∝ exp(-Eg/2kT) shows exponential dependence on both temperature T and band gap Eg.",
+                    hint: "Look at the equation ni ∝ exp(-Eg/2kT) - what variables are in the exponential?"
+                },
+                {
+                    q: "Silicon has a band gap of ____ eV at room temperature.",
+                    blanks: ["1.12"],
+                    explanation: "Silicon's band gap is 1.12 eV at 300K, making it suitable for most electronic applications.",
+                    hint: "This value is fundamental to semiconductor physics."
+                },
+                {
+                    q: "For n-type doping with Nd >> ni, the electron concentration is approximately ____",
+                    blanks: ["Nd", "nd"],
+                    explanation: "In heavily doped n-type material, nearly all donors ionize: n ≈ Nd when Nd >> ni.",
+                    hint: "Each donor atom contributes one electron when fully ionized."
+                }
+            ],
+            
+            matching: [
+                {
+                    q: "Match the semiconductor properties with their effects:",
+                    pairs: [
+                        ["Higher temperature", "Increases ni exponentially"],
+                        ["N-type doping", "Increases electron concentration"],
+                        ["Smaller band gap", "Higher intrinsic concentration"],
+                        ["P-type doping", "Increases hole concentration"]
+                    ],
+                    explanation: "These are fundamental relationships in semiconductor physics.",
+                    hint: "Consider the physical mechanisms behind each property."
+                },
+                {
+                    q: "Match the materials with their band gaps:",
+                    pairs: [
+                        ["Silicon", "1.12 eV"],
+                        ["Germanium", "0.66 eV"],
+                        ["GaAs", "1.42 eV"],
+                        ["Diamond", "5.5 eV"]
+                    ],
+                    explanation: "Band gap determines the energy required for electron excitation from valence to conduction band.",
+                    hint: "Remember: smaller gap = easier excitation = higher ni."
+                }
+            ],
+            
+            calculation: [
+                {
+                    q: "Calculate the hole concentration in n-type silicon with Nd = 1×10¹⁶ cm⁻³ at 300K (ni = 1.08×10¹⁰ cm⁻³):",
+                    answer: "1.17e4",
+                    tolerance: 0.2,
+                    explanation: "Using np = ni²: p = ni²/n = (1.08×10¹⁰)²/(1×10¹⁶) = 1.17×10⁴ cm⁻³",
+                    hint: "Use the mass action law: np = ni²"
+                },
+                {
+                    q: "If temperature increases from 300K to 400K, and ni increases by factor of 100, what is the new Fermi level shift in eV?",
+                    answer: "0.12",
+                    tolerance: 0.02,
+                    explanation: "ΔEF = kT×ln(ni_new/ni_old) = 0.0345×ln(100) = 0.12 eV (for intrinsic case)",
+                    hint: "Use EF = kT × ln(ni_new/ni_old) where kT = 0.0345 eV at 400K"
+                },
+                {
+                    q: "Calculate the electron concentration in silicon at 350K if ni increases to 3×10¹¹ cm⁻³ with Nd = 10¹⁵ cm⁻³:",
+                    answer: "1e15",
+                    tolerance: 0.1e15,
+                    explanation: "n = (Nd + √(Nd² + 4ni²))/2 ≈ Nd since Nd >> ni, so n ≈ 10¹⁵ cm⁻³",
+                    hint: "For Nd >> ni, electron concentration approximately equals donor concentration"
+                }
+            ]
+        };
+
+        let selectedQuestions = {
+            rapidFire: [],
+            mcq: [],
+            fillBlanks: [],
+            matching: [],
+            calculation: []
+        };
+
+        let challengeAnswers = {
+            rapidFire: [],
+            mcq: [],
+            fillBlanks: [],
+            matching: [],
+            calculation: []
+        };
+
+        let matchingSelections = {};
+
+        function initializeChallenges() {
+            console.log('Initializing challenges...');
+            
+            if (!selectedQuestions.rapidFire || selectedQuestions.rapidFire.length === 0) {
+                selectRandomQuestions();
+                initializeChallengeAnswers();
+            }
+            
+            generateChallengeContent();
+            updateChallengeStats();
+        }
+
+        function selectRandomQuestions() {
+            console.log('Selecting random questions...');
+            
+            selectedQuestions.rapidFire = getRandomItems(questionBank.rapidFire, 3);
+            selectedQuestions.mcq = getRandomItems(questionBank.mcq, 2);
+            selectedQuestions.fillBlanks = getRandomItems(questionBank.fillBlanks, 2);
+            selectedQuestions.matching = getRandomItems(questionBank.matching, 1);
+            selectedQuestions.calculation = getRandomItems(questionBank.calculation, 2);
+            
+            console.log('Selected questions:', selectedQuestions);
+        }
+
+        function getRandomItems(array, count) {
+            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, Math.min(count, array.length));
+        }
+
+        function initializeChallengeAnswers() {
+            challengeAnswers.rapidFire = selectedQuestions.rapidFire.map(() => null);
+            challengeAnswers.mcq = selectedQuestions.mcq.map(() => null);
+            challengeAnswers.fillBlanks = selectedQuestions.fillBlanks.map(() => []);
+            challengeAnswers.matching = selectedQuestions.matching.map(() => []);
+            challengeAnswers.calculation = selectedQuestions.calculation.map(() => null);
+            matchingSelections = {};
+        }
+
+        function generateChallengeContent() {
+            console.log('Generating challenge content...');
+            
+            const container = document.getElementById('challengeSections');
+            if (!container) {
+                console.error('Challenge sections container not found');
+                return;
+            }
+            
+            container.innerHTML = '';
+
+            if (selectedQuestions.rapidFire && selectedQuestions.rapidFire.length > 0) {
+                container.appendChild(createRapidFireSection());
+            }
+
+            if (selectedQuestions.mcq && selectedQuestions.mcq.length > 0) {
+                container.appendChild(createMCQSection());
+            }
+
+            if (selectedQuestions.fillBlanks && selectedQuestions.fillBlanks.length > 0) {
+                container.appendChild(createFillBlanksSection());
+            }
+
+            if (selectedQuestions.matching && selectedQuestions.matching.length > 0) {
+                container.appendChild(createMatchingSection());
+            }
+
+            if (selectedQuestions.calculation && selectedQuestions.calculation.length > 0) {
+                container.appendChild(createCalculationSection());
+            }
+            
+            console.log('Challenge content generated successfully');
+        }
+
+        function createRapidFireSection() {
+            const section = document.createElement('div');
+            section.className = 'challenge-section';
+            section.id = 'rapidFire';
+            
+            section.innerHTML = `
+                <div class="challenge-header">
+                    <div class="challenge-icon">⚡</div>
+                    <div>
+                        <h3 class="challenge-title">Rapid Fire Questions</h3>
+                        <p class="challenge-description">Quick true/false questions to test your understanding of carrier concentration physics!</p>
+                    </div>
+                </div>
+                <div id="rapidFireContent"></div>
+                <div class="challenge-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="submitRapidFire()">Check Answers</button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="showHint('rapidFire')">💡 Show Hints</button>
+                    <button class="challenge-btn challenge-btn-reset" onclick="resetSingleChallenge('rapidFire')">🔄 Reset</button>
+                </div>
+                <div class="challenge-feedback" id="rapidFireFeedback"></div>
+                <div class="challenge-hint" id="rapidFireHint"></div>
+            `;
+
+            const content = section.querySelector('#rapidFireContent');
+            selectedQuestions.rapidFire.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1}: ${question.q}</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectRapidFire(${index}, true)" data-value="true">
+                            True
+                        </div>
+                        <div class="quiz-option" onclick="selectRapidFire(${index}, false)" data-value="false">
+                            False
+                        </div>
+                    </div>
+                `;
+                content.appendChild(questionDiv);
+            });
+
+            return section;
+        }
+
+        function createMCQSection() {
+            const section = document.createElement('div');
+            section.className = 'challenge-section';
+            section.id = 'mcq';
+            
+            section.innerHTML = `
+                <div class="challenge-header">
+                    <div class="challenge-icon">📝</div>
+                    <div>
+                        <h3 class="challenge-title">Multiple Choice Questions</h3>
+                        <p class="challenge-description">Choose the best answer for each carrier concentration question.</p>
+                    </div>
+                </div>
+                <div id="mcqContent"></div>
+                <div class="challenge-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="submitMCQ()">Check Answers</button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="showHint('mcq')">💡 Show Hints</button>
+                    <button class="challenge-btn challenge-btn-reset" onclick="resetSingleChallenge('mcq')">🔄 Reset</button>
+                </div>
+                <div class="challenge-feedback" id="mcqFeedback"></div>
+                <div class="challenge-hint" id="mcqHint"></div>
+            `;
+
+            const content = section.querySelector('#mcqContent');
+            selectedQuestions.mcq.forEach((question, qIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${qIndex + 1}: ${question.q}</h4>
+                    <div class="quiz-options">
+                        ${question.options.map((option, oIndex) => `
+                            <div class="quiz-option" onclick="selectMCQ(${qIndex}, ${oIndex})" data-value="${oIndex}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                content.appendChild(questionDiv);
+            });
+
+            return section;
+        }
+
+        function createFillBlanksSection() {
+            const section = document.createElement('div');
+            section.className = 'challenge-section';
+            section.id = 'fillBlanks';
+            
+            section.innerHTML = `
+                <div class="challenge-header">
+                    <div class="challenge-icon">✏️</div>
+                    <div>
+                        <h3 class="challenge-title">Fill in the Blanks</h3>
+                        <p class="challenge-description">Complete the carrier concentration equations and concepts.</p>
+                    </div>
+                </div>
+                <div id="fillBlanksContent"></div>
+                <div class="challenge-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="submitFillBlanks()">Check Answers</button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="showHint('fillBlanks')">💡 Show Hints</button>
+                    <button class="challenge-btn challenge-btn-reset" onclick="resetSingleChallenge('fillBlanks')">🔄 Reset</button>
+                </div>
+                <div class="challenge-feedback" id="fillBlanksFeedback"></div>
+                <div class="challenge-hint" id="fillBlanksHint"></div>
+            `;
+
+            const content = section.querySelector('#fillBlanksContent');
+            selectedQuestions.fillBlanks.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'fill-blank-container';
+                let questionText = question.q;
+                
+                const regex = /____/g;
+                let match;
+                let blankIndex = 0;
+                
+                while ((match = regex.exec(questionText)) !== null) {
+                    const inputId = `blank_${index}_${blankIndex}`;
+                    questionText = questionText.replace('____', 
+                        `<input type="text" class="fill-blank-input" id="${inputId}" placeholder="Answer">`
+                    );
+                    blankIndex++;
+                }
+                
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1}:</h4>
+                    <div class="fill-blank-text">${questionText}</div>
+                `;
+                content.appendChild(questionDiv);
+            });
+
+            return section;
+        }
+
+        function createMatchingSection() {
+            const section = document.createElement('div');
+            section.className = 'challenge-section';
+            section.id = 'matching';
+            
+            section.innerHTML = `
+                <div class="challenge-header">
+                    <div class="challenge-icon">🔗</div>
+                    <div>
+                        <h3 class="challenge-title">Match the Following</h3>
+                        <p class="challenge-description">Click on items from both columns to match them correctly.</p>
+                    </div>
+                </div>
+                <div id="matchingContent"></div>
+                <div class="challenge-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="submitMatching()">Check Matches</button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="showHint('matching')">💡 Show Hints</button>
+                    <button class="challenge-btn challenge-btn-reset" onclick="resetSingleChallenge('matching')">🔄 Reset</button>
+                </div>
+                <div class="challenge-feedback" id="matchingFeedback"></div>
+                <div class="challenge-hint" id="matchingHint"></div>
+            `;
+
+            const content = section.querySelector('#matchingContent');
+            selectedQuestions.matching.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                
+                const leftItems = question.pairs.map(pair => pair[0]);
+                const rightItems = [...question.pairs.map(pair => pair[1])].sort(() => Math.random() - 0.5);
+                
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1}: ${question.q}</h4>
+                    <div class="matching-container" id="matching_${index}">
+                        <div class="matching-column">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #1f2937;">Terms</h4>
+                            ${leftItems.map((item, itemIndex) => `
+                                <div class="matching-item" data-question="${index}" data-index="${itemIndex}" data-side="left" data-value="${item}" onclick="selectMatching(this)">
+                                    ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="matching-column">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #1f2937;">Definitions</h4>
+                            ${rightItems.map((item, itemIndex) => `
+                                <div class="matching-item" data-question="${index}" data-index="${itemIndex}" data-side="right" data-value="${item}" onclick="selectMatching(this)">
+                                    ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                content.appendChild(questionDiv);
+            });
+
+            return section;
+        }
+
+        function createCalculationSection() {
+            const section = document.createElement('div');
+            section.className = 'challenge-section';
+            section.id = 'calculation';
+            
+            section.innerHTML = `
+                <div class="challenge-header">
+                    <div class="challenge-icon">🔢</div>
+                    <div>
+                        <h3 class="challenge-title">Calculation Problems</h3>
+                        <p class="challenge-description">Solve these numerical problems related to carrier concentration physics.</p>
+                    </div>
+                </div>
+                <div id="calculationContent"></div>
+                <div class="challenge-controls">
+                    <button class="challenge-btn challenge-btn-primary" onclick="submitCalculation()">Check Answers</button>
+                    <button class="challenge-btn challenge-btn-secondary" onclick="showHint('calculation')">💡 Show Formulas</button>
+                    <button class="challenge-btn challenge-btn-reset" onclick="resetSingleChallenge('calculation')">🔄 Reset</button>
+                </div>
+                <div class="challenge-feedback" id="calculationFeedback"></div>
+                <div class="challenge-hint" id="calculationHint"></div>
+            `;
+
+            const content = section.querySelector('#calculationContent');
+            selectedQuestions.calculation.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'fill-blank-container';
+                questionDiv.innerHTML = `
+                    <h4>Problem ${index + 1}: ${question.q}</h4>
+                    <div style="margin-top: 15px;">
+                        <input type="text" class="fill-blank-input" id="calc_${index}" placeholder="Enter answer" style="width: 150px;">
+                        <span style="margin-left: 10px; color: #666; font-size: 0.9rem;">Use scientific notation (e.g., 1.5e4)</span>
+                    </div>
+                `;
+                content.appendChild(questionDiv);
+            });
+
+            return section;
+        }
+
+        // Answer selection functions
+        function selectRapidFire(index, answer) {
+            challengeAnswers.rapidFire[index] = answer;
+            
+            const questionSection = document.querySelector(`#rapidFireContent .quiz-question:nth-child(${index + 1})`);
+            const options = questionSection.querySelectorAll('.quiz-option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            const selectedOption = questionSection.querySelector(`[data-value="${answer}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+            }
+        }
+
+        function selectMCQ(qIndex, oIndex) {
+            challengeAnswers.mcq[qIndex] = oIndex;
+            
+            const questionSection = document.querySelector(`#mcqContent .quiz-question:nth-child(${qIndex + 1})`);
+            const options = questionSection.querySelectorAll('.quiz-option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            const selectedOption = questionSection.querySelector(`[data-value="${oIndex}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+            }
+        }
+
+        function selectMatching(element) {
+            if (element.classList.contains('matched')) return;
+            
+            const questionIndex = parseInt(element.dataset.question);
+            const side = element.dataset.side;
+            const value = element.dataset.value;
+            
+            if (!matchingSelections[questionIndex]) {
+                matchingSelections[questionIndex] = { left: null, right: null, leftElement: null, rightElement: null };
+            }
+
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                matchingSelections[questionIndex][side] = null;
+                matchingSelections[questionIndex][side + 'Element'] = null;
+                return;
+            }
+
+            document.querySelectorAll(`[data-question="${questionIndex}"][data-side="${side}"].selected`).forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            element.classList.add('selected');
+            matchingSelections[questionIndex][side] = value;
+            matchingSelections[questionIndex][side + 'Element'] = element;
+
+            if (matchingSelections[questionIndex].left && matchingSelections[questionIndex].right) {
+                const leftValue = matchingSelections[questionIndex].left;
+                const rightValue = matchingSelections[questionIndex].right;
+                const leftElement = matchingSelections[questionIndex].leftElement;
+                const rightElement = matchingSelections[questionIndex].rightElement;
+                
+                if (!challengeAnswers.matching[questionIndex]) {
+                    challengeAnswers.matching[questionIndex] = [];
+                }
+                
+                challengeAnswers.matching[questionIndex].push([leftValue, rightValue]);
+                
+                leftElement.classList.remove('selected');
+                leftElement.classList.add('matched');
+                rightElement.classList.remove('selected');
+                rightElement.classList.add('matched');
+                
+                leftElement.style.backgroundColor = '#dbeafe';
+                rightElement.style.backgroundColor = '#dbeafe';
+                leftElement.style.border = '2px solid #3b82f6';
+                rightElement.style.border = '2px solid #3b82f6';
+                
+                const matchNumber = challengeAnswers.matching[questionIndex].length;
+                leftElement.innerHTML += ` <span class="match-number">${matchNumber}</span>`;
+                rightElement.innerHTML += ` <span class="match-number">${matchNumber}</span>`;
+                
+                matchingSelections[questionIndex] = { left: null, right: null, leftElement: null, rightElement: null };
+                
+                const totalItems = selectedQuestions.matching[questionIndex].pairs.length;
+                if (challengeAnswers.matching[questionIndex].length === totalItems) {
+                    const container = document.getElementById(`matching_${questionIndex}`);
+                    const completionMsg = document.createElement('div');
+                    completionMsg.className = 'matching-completion';
+                    completionMsg.innerHTML = `
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px; border: 2px solid #3b82f6;">
+                            <i class="fas fa-check-circle" style="color: #3b82f6; margin-right: 8px;"></i>
+                            All matches completed! Click "Check Matches" to verify your answers.
+                        </div>
+                    `;
+                    container.appendChild(completionMsg);
+                }
+            }
+        }
+
+        // Submit functions
+        function submitRapidFire() {
+            let correct = 0;
+            let feedback = '<div style="margin-top: 15px;">';
+            
+            selectedQuestions.rapidFire.forEach((question, index) => {
+                const isCorrect = challengeAnswers.rapidFire[index] === question.a;
+                if (isCorrect) correct++;
+                
+                const questionSection = document.querySelector(`#rapidFireContent .quiz-question:nth-child(${index + 1})`);
+                const options = questionSection.querySelectorAll('.quiz-option');
+                
+                options.forEach(option => {
+                    const optionValue = option.dataset.value === 'true';
+                    if (optionValue === question.a) {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                feedback += `<div class="explanation-panel active">
+                    <div class="explanation-title">
+                        <i class="fas fa-${isCorrect ? 'check-circle' : 'times-circle'}" style="color: ${isCorrect ? '#10b981' : '#ef4444'};"></i> 
+                        Question ${index + 1}: ${isCorrect ? 'Correct!' : 'Incorrect'}
+                    </div>
+                    <div class="explanation-content">${question.explanation}</div>
+                </div>`;
+            });
+            
+            feedback += '</div>';
+            
+            const feedbackElement = document.getElementById('rapidFireFeedback');
+            feedbackElement.className = `challenge-feedback ${correct === selectedQuestions.rapidFire.length ? 'success' : 'error'}`;
+            feedbackElement.innerHTML = `<strong>Score: ${correct}/${selectedQuestions.rapidFire.length}</strong>${feedback}`;
+            
+            if (correct === selectedQuestions.rapidFire.length) {
+                document.getElementById('rapidFire').classList.add('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function submitMCQ() {
+            let correct = 0;
+            let feedback = '<div style="margin-top: 15px;">';
+            
+            selectedQuestions.mcq.forEach((question, index) => {
+                const isCorrect = challengeAnswers.mcq[index] === question.correct;
+                if (isCorrect) correct++;
+                
+                const questionSection = document.querySelector(`#mcqContent .quiz-question:nth-child(${index + 1})`);
+                const options = questionSection.querySelectorAll('.quiz-option');
+                
+                options.forEach((option, optionIndex) => {
+                    if (optionIndex === question.correct) {
+                        option.classList.add('correct');
+                    } else if (optionIndex === challengeAnswers.mcq[index] && optionIndex !== question.correct) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                feedback += `<div class="explanation-panel active">
+                    <div class="explanation-title">
+                        <i class="fas fa-${isCorrect ? 'check-circle' : 'times-circle'}" style="color: ${isCorrect ? '#10b981' : '#ef4444'};"></i> 
+                        Question ${index + 1}: ${isCorrect ? 'Correct!' : 'Incorrect'}
+                    </div>
+                    <div class="explanation-content">
+                        <strong>Correct Answer:</strong> ${question.options[question.correct]}<br>
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                </div>`;
+            });
+            
+            feedback += '</div>';
+            
+            const feedbackElement = document.getElementById('mcqFeedback');
+            feedbackElement.className = `challenge-feedback ${correct === selectedQuestions.mcq.length ? 'success' : 'error'}`;
+            feedbackElement.innerHTML = `<strong>Score: ${correct}/${selectedQuestions.mcq.length}</strong>${feedback}`;
+            
+            if (correct === selectedQuestions.mcq.length) {
+                document.getElementById('mcq').classList.add('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function submitFillBlanks() {
+            let correct = 0;
+            let feedback = '<div style="margin-top: 15px;">';
+            
+            selectedQuestions.fillBlanks.forEach((question, index) => {
+                let questionCorrect = true;
+                let blankIndex = 0;
+                
+                const regex = /____/g;
+                let match;
+                while ((match = regex.exec(question.q)) !== null) {
+                    const input = document.getElementById(`blank_${index}_${blankIndex}`);
+                    if (input) {
+                        const userAnswer = input.value.toLowerCase().trim();
+                        const correctAnswers = Array.isArray(question.blanks) ? 
+                            question.blanks.map(a => a.toLowerCase().trim()) : 
+                            [question.blanks[blankIndex] ? question.blanks[blankIndex].toLowerCase().trim() : ''];
+                        
+                        const isCorrect = correctAnswers.includes(userAnswer);
+                        
+                        input.classList.remove('correct', 'incorrect');
+                        input.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        
+                        if (!isCorrect) questionCorrect = false;
+                    }
+                    blankIndex++;
+                }
+                
+                if (questionCorrect) correct++;
+                
+                feedback += `<div class="explanation-panel active">
+                    <div class="explanation-title">
+                        <i class="fas fa-${questionCorrect ? 'check-circle' : 'info-circle'}" style="color: ${questionCorrect ? '#10b981' : '#6366f1'};"></i> 
+                        Question ${index + 1}: ${questionCorrect ? 'Correct!' : 'Review Needed'}
+                    </div>
+                    <div class="explanation-content">
+                        <strong>Explanation:</strong> ${question.explanation}<br>
+                        <strong>Correct Answer(s):</strong> ${Array.isArray(question.blanks) ? question.blanks.join(', ') : Object.values(question.blanks || {}).join(', ')}<br>
+                        <strong>Hint:</strong> ${question.hint}
+                    </div>
+                </div>`;
+            });
+            
+            feedback += '</div>';
+            
+            const feedbackElement = document.getElementById('fillBlanksFeedback');
+            feedbackElement.className = `challenge-feedback ${correct === selectedQuestions.fillBlanks.length ? 'success' : 'error'}`;
+            feedbackElement.innerHTML = `<strong>Score: ${correct}/${selectedQuestions.fillBlanks.length}</strong>${feedback}`;
+            
+            if (correct === selectedQuestions.fillBlanks.length) {
+                document.getElementById('fillBlanks').classList.add('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function submitMatching() {
+            let correct = 0;
+            let feedback = '<div style="margin-top: 15px;">';
+            
+            selectedQuestions.matching.forEach((question, index) => {
+                const userAnswers = challengeAnswers.matching[index] || [];
+                let questionCorrect = true;
+                let correctPairs = 0;
+                
+                question.pairs.forEach((correctPair) => {
+                    const found = userAnswers.some(userPair => 
+                        userPair[0] === correctPair[0] && userPair[1] === correctPair[1]
+                    );
+                    if (found) {
+                        correctPairs++;
+                        const leftItem = document.querySelector(`[data-question="${index}"][data-side="left"][data-value="${correctPair[0]}"]`);
+                        const rightItem = document.querySelector(`[data-question="${index}"][data-side="right"][data-value="${correctPair[1]}"]`);
+                        
+                        if (leftItem && rightItem) {
+                            leftItem.classList.add('correct-match');
+                            rightItem.classList.add('correct-match');
+                            leftItem.style.borderColor = '#10b981';
+                            rightItem.style.borderColor = '#10b981';
+                            leftItem.style.backgroundColor = 'rgba(16, 185, 129, 0.15)';
+                            rightItem.style.backgroundColor = 'rgba(16, 185, 129, 0.15)';
+                            
+                            if (!leftItem.innerHTML.includes('✓')) {
+                                leftItem.innerHTML += ` <span style="color: #10b981; font-weight: bold;">✓</span>`;
+                            }
+                            if (!rightItem.innerHTML.includes('✓')) {
+                                rightItem.innerHTML += ` <span style="color: #10b981; font-weight: bold;">✓</span>`;
+                            }
+                        }
+                    }
+                });
+                
+                userAnswers.forEach((userPair) => {
+                    const isCorrect = question.pairs.some(correctPair => 
+                        correctPair[0] === userPair[0] && correctPair[1] === userPair[1]
+                    );
+                    
+                    if (!isCorrect) {
+                        const leftItem = document.querySelector(`[data-question="${index}"][data-side="left"][data-value="${userPair[0]}"]`);
+                        const rightItem = document.querySelector(`[data-question="${index}"][data-side="right"][data-value="${userPair[1]}"]`);
+                        
+                        if (leftItem && rightItem) {
+                            leftItem.classList.add('incorrect-match');
+                            rightItem.classList.add('incorrect-match');
+                            leftItem.style.borderColor = '#ef4444';
+                            rightItem.style.borderColor = '#ef4444';
+                            leftItem.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                            rightItem.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                        }
+                    }
+                });
+                
+                questionCorrect = (correctPairs === question.pairs.length && userAnswers.length === question.pairs.length);
+                
+                if (questionCorrect) {
+                    correct++;
+                }
+                
+                feedback += `<div class="explanation-panel active">
+                    <div class="explanation-title">
+                        <i class="fas fa-${questionCorrect ? 'check-circle' : 'times-circle'}"></i> 
+                        Question ${index + 1}: ${questionCorrect ? 'Perfect Match! 🎉' : `${correctPairs}/${question.pairs.length} Correct`}
+                    </div>
+                    <div class="explanation-content">
+                        <strong>Correct Pairs:</strong><br>
+                        ${question.pairs.map(pair => `• ${pair[0]} → ${pair[1]}`).join('<br>')}
+                        <br><br>
+                        <strong>Explanation:</strong> ${question.explanation}<br>
+                        <strong>Hint:</strong> ${question.hint}
+                    </div>
+                </div>`;
+            });
+            
+            feedback += '</div>';
+            
+            const feedbackElement = document.getElementById('matchingFeedback');
+            feedbackElement.className = `challenge-feedback ${correct === selectedQuestions.matching.length ? 'success' : 'error'}`;
+            feedbackElement.innerHTML = `<strong>Score: ${correct}/${selectedQuestions.matching.length}</strong>${feedback}`;
+            
+            if (correct === selectedQuestions.matching.length) {
+                document.getElementById('matching').classList.add('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function submitCalculation() {
+            let correct = 0;
+            let feedback = '<div style="margin-top: 15px;">';
+            
+            selectedQuestions.calculation.forEach((question, index) => {
+                const input = document.getElementById(`calc_${index}`);
+                const userInput = input.value.trim();
+                let userAnswer;
+                
+                if (userInput.includes('e') || userInput.includes('E')) {
+                    userAnswer = parseFloat(userInput);
+                } else {
+                    userAnswer = parseFloat(userInput);
+                }
+                
+                const correctAnswer = parseFloat(question.answer);
+                const tolerance = question.tolerance || 0.1;
+                
+                const isCorrect = Math.abs(userAnswer - correctAnswer) / correctAnswer <= tolerance;
+                
+                input.classList.toggle('correct', isCorrect);
+                input.classList.toggle('incorrect', !isCorrect);
+                
+                if (isCorrect) correct++;
+                
+                feedback += `<div class="explanation-panel active">
+                    <div class="explanation-title">
+                        <i class="fas fa-${isCorrect ? 'check-circle' : 'calculator'}"></i> 
+                        Problem ${index + 1}: ${isCorrect ? 'Solved!' : 'Solution'}
+                    </div>
+                    <div class="explanation-content">
+                        <strong>Solution:</strong> ${question.explanation}<br>
+                        <strong>Hint:</strong> ${question.hint}
+                    </div>
+                </div>`;
+            });
+            
+            feedback += '</div>';
+            
+            const feedbackElement = document.getElementById('calculationFeedback');
+            feedbackElement.className = `challenge-feedback ${correct === selectedQuestions.calculation.length ? 'success' : 'error'}`;
+            feedbackElement.innerHTML = `<strong>Score: ${correct}/${selectedQuestions.calculation.length}</strong>${feedback}`;
+            
+            if (correct === selectedQuestions.calculation.length) {
+                document.getElementById('calculation').classList.add('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function showHint(section) {
+            let hintText = '';
+            let hintElement = document.getElementById(section + 'Hint');
+            
+            switch(section) {
+                case 'rapidFire':
+                    hintText = selectedQuestions.rapidFire.map((q, i) => `<strong>Q${i+1}:</strong> ${q.hint}`).join('<br><br>');
+                    break;
+                case 'mcq':
+                    hintText = selectedQuestions.mcq.map((q, i) => `<strong>Q${i+1}:</strong> ${q.hint}`).join('<br><br>');
+                    break;
+                case 'fillBlanks':
+                    hintText = selectedQuestions.fillBlanks.map((q, i) => `<strong>Q${i+1}:</strong> ${q.hint}`).join('<br><br>');
+                    break;
+                case 'matching':
+                    hintText = selectedQuestions.matching.map((q, i) => `<strong>Q${i+1}:</strong> ${q.hint}`).join('<br><br>');
+                    break;
+                case 'calculation':
+                    hintText = selectedQuestions.calculation.map((q, i) => `<strong>Problem ${i+1}:</strong> ${q.hint}`).join('<br><br>');
+                    break;
+            }
+            
+            if (hintElement) {
+                hintElement.innerHTML = `💡 <strong>Hints:</strong><br><br>${hintText}`;
+                hintElement.classList.add('active');
+            }
+        }
+
+        function resetSingleChallenge(challengeType) {
+            if (challengeType === 'rapidFire') {
+                challengeAnswers.rapidFire = selectedQuestions.rapidFire.map(() => null);
+                document.querySelectorAll('#rapidFireContent .quiz-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+            } else if (challengeType === 'mcq') {
+                challengeAnswers.mcq = selectedQuestions.mcq.map(() => null);
+                document.querySelectorAll('#mcqContent .quiz-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+            } else if (challengeType === 'fillBlanks') {
+                challengeAnswers.fillBlanks = selectedQuestions.fillBlanks.map(() => []);
+                document.querySelectorAll('#fillBlanksContent .fill-blank-input').forEach(input => {
+                    input.value = '';
+                    input.classList.remove('correct', 'incorrect');
+                });
+            } else if (challengeType === 'matching') {
+                challengeAnswers.matching = selectedQuestions.matching.map(() => []);
+                matchingSelections = {};
+                document.querySelectorAll('#matchingContent .matching-item').forEach(item => {
+                    item.classList.remove('selected', 'matched', 'correct-match', 'incorrect-match');
+                    item.style.backgroundColor = '';
+                    item.style.border = '';
+                    const matchNumber = item.querySelector('.match-number');
+                    if (matchNumber) {
+                        matchNumber.remove();
+                    }
+                    const checkmarks = item.querySelectorAll('span[style*="color: #10b981"]');
+                    checkmarks.forEach(check => check.remove());
+                });
+                document.querySelectorAll('.matching-completion').forEach(el => el.remove());
+            } else if (challengeType === 'calculation') {
+                challengeAnswers.calculation = selectedQuestions.calculation.map(() => null);
+                document.querySelectorAll('#calculationContent .fill-blank-input').forEach(input => {
+                    input.value = '';
+                    input.classList.remove('correct', 'incorrect');
+                });
+            }
+            
+            const feedbackElement = document.getElementById(challengeType + 'Feedback');
+            const hintElement = document.getElementById(challengeType + 'Hint');
+            
+            if (feedbackElement) {
+                feedbackElement.innerHTML = '';
+                feedbackElement.className = 'challenge-feedback';
+            }
+            
+            if (hintElement) {
+                hintElement.classList.remove('active');
+                hintElement.innerHTML = '';
+            }
+            
+            const sectionElement = document.getElementById(challengeType);
+            if (sectionElement) {
+                sectionElement.classList.remove('completed');
+            }
+            
+            updateChallengeStats();
+        }
+
+        function updateChallengeStats() {
+            const completedChallenges = document.querySelectorAll('.challenge-section.completed').length;
+            const totalChallenges = document.querySelectorAll('.challenge-section').length;
+            
+            document.getElementById('completedChallenges').textContent = completedChallenges;
+            document.getElementById('totalChallenges').textContent = totalChallenges;
+            document.getElementById('challengeScore').textContent = completedChallenges * 20;
+            
+            const progress = totalChallenges > 0 ? (completedChallenges / totalChallenges) * 100 : 0;
+            document.getElementById('overallProgress').style.width = `${progress}%`;
+        }
+
+        function resetAllChallenges() {
+            challengeAnswers = {
+                rapidFire: [],
+                mcq: [],
+                fillBlanks: [],
+                matching: [],
+                calculation: []
+            };
+            matchingSelections = {};
+            
+            document.querySelectorAll('.challenge-section').forEach(section => {
+                section.classList.remove('completed');
+            });
+            
+            document.querySelectorAll('.challenge-feedback').forEach(feedback => {
+                feedback.innerHTML = '';
+                feedback.className = 'challenge-feedback';
+            });
+            
+            document.querySelectorAll('.challenge-hint').forEach(hint => {
+                hint.classList.remove('active');
+                hint.innerHTML = '';
+            });
+            
+            selectRandomQuestions();
+            initializeChallengeAnswers();
+            generateChallengeContent();
+            updateChallengeStats();
+        }
+
+        // Utility functions
+        function switchTab(tabButton, tabName) {
+            document.querySelectorAll('.experiment-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            if (tabButton) tabButton.classList.add('active');
+            
+            if (tabName === 'challenges') {
+                // Check if challenges need to be initialized or if content is missing
+                const challengeSections = document.getElementById('challengeSections');
+                const hasContent = challengeSections && challengeSections.children.length > 0;
+                
+                if (!selectedQuestions.rapidFire || selectedQuestions.rapidFire.length === 0 || !hasContent) {
+                    initializeChallenges();
+                } else {
+                    updateChallengeStats();
+                }
+            }
+        }
+
+        function showInfo() {
+            alert("🎓 Semiconductor Carrier Concentration Explorer\n\nThis interactive simulation teaches fundamental semiconductor physics:\n\n• Intrinsic vs extrinsic behavior\n• Temperature effects on carriers\n• N-type and P-type doping\n• Fermi level physics\n• Material property differences\n• Mass action law (np = ni²)\n\n🚀 Start the guided walkthrough for step-by-step learning!");
+        }
+
+        // Event listeners
+        tempSlider.addEventListener('input', updateDisplay);
+        dopingSlider.addEventListener('input', updateDisplay);
+        dopingTypeSelect.addEventListener('change', updateDisplay);
+        materialSelect.addEventListener('change', updateDisplay);
+
+        window.addEventListener('resize', () => {
+            updateDisplay();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            resizeCanvas();
+            updateDisplay();
+            
+            // Initialize challenges completely
+            selectRandomQuestions();
+            initializeChallengeAnswers();
+            generateChallengeContent();
+            updateChallengeStats();
+            
+            // Auto-start the guided tour
+            setTimeout(() => {
+                startGuidedTour();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -28,15 +28,8 @@
       "content-type": "assesment"
     },
     {
-      "target": "procedure.html",
-      "source": "procedure.md",
-      "label": "Procedure",
-      "unit-type": "task",
-      "content-type": "text"
-    },
-    {
       "target": "simulation.html",
-      "source": "simulation/index.html",
+      "source": "simulation/test.html",
       "label": "Simulation",
       "unit-type": "task",
       "content-type": "simulation"
@@ -47,6 +40,13 @@
       "label": "Posttest",
       "unit-type": "task",
       "content-type": "assesment"
+    },
+    {
+      "target": "didyouknow_uniformdoping.html",
+      "source": "simulation/didyouknow_uniformdoping.html",
+      "label": "Fact Vault",
+      "unit-type": "task",
+      "content-type": "simulation"
     },
     {
       "target": "references.html",

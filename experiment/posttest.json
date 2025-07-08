@@ -2,73 +2,157 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "1. Given T = 300 K, m<sub>n</sub> = 1.08 × 10<sup>-31</sup> kg, m<sub>p</sub> = 0.56 × 10<sup>-31</sup> kg, h = 6.626 × 10<sup>-34</sup> J·s, E<sub>F</sub> = 0.4 eV, E<sub>C</sub> = 0.2 eV, and E<sub>V</sub> = 0.1 eV, what are the electron concentration n0 and hole concentration p0?",
+      "question": "What does the effective density of states (N<sub>C</sub> or N<sub>V</sub>) represent in semiconductors?",
       "answers": {
-        "a": "n0 = 7.3 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 1.1<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
-        "b": "n0 = 2.5 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 3.0<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
-        "c": "n0 = 4.1 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 1.8<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>",
-        "d": "n0 = 5.2 x 10<sup>25</sup> m<sup>-3</sup>, p0 = 2.7<sup>-3</sup> x 10<sup>17</sup> m<sup>-3</sup>"
+        "a": "The number of atoms per unit volume",
+        "b": "The number of available energy states near the conduction or valence band edge",
+        "c": "The actual number of free electrons",
+        "d": "The number of ionized donors"
       },
-      
       "explanations": {
-        "a": "Correct. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "b": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "c": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n",
-        "d": "Incorrect. Given the formulas for the electron and hole concentrations in a semiconductor:\n\nn0 = NC e^F, NC = 14 (2m_n k_B T / h^2)^(3/2), F = (E_F - E_c) / (k_B T)\np0 = NV e^F, NV = 14 (2m_p k_B T / h^2)^(3/2), F = (E_V - E) / (k_B T)\n\n"
+        "a": "Incorrect. Atom count relates to physical structure, not energy levels.",
+        "b": "Correct. Effective DOS indicates how many states are available for occupation near band edges.",
+        "c": "Incorrect. That's carrier concentration, not DOS.",
+        "d": "Incorrect. Donor atoms may or may not contribute to conduction directly."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "At room temperature (T = 300K), the thermal energy kT is approximately equal to:",
+      "answers": {
+        "a": "0.0259 eV",
+        "b": "1.60 eV",
+        "c": "0.0025 eV",
+        "d": "9.1 × 10<sup>-31</sup> eV"
+      },
+      "explanations": {
+        "a": "Correct. This is a commonly used approximation at 300K.",
+        "b": "Incorrect. 1.60 eV is the energy of an electron at 1V.",
+        "c": "Incorrect. Too small compared to actual thermal energy.",
+        "d": "Incorrect. That's the mass of an electron, not energy."
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "2. From the above values find intrinsic carrier concentration",
+      "question": "When a semiconductor is doped with donor atoms, what happens to the Fermi level?",
       "answers": {
-        "a": "2.3 x 10<sup>22</sup> m<sup>-3</sup>",
-        "b": "3.0 x 10<sup>22</sup> m<sup>-3</sup>",
-        "c": "2.8 x 10<sup>22</sup> m<sup>-3</sup>",
-        "d": "2.7 x 10<sup>22</sup> m<sup>-3</sup>"
+        "a": "It shifts closer to the conduction band",
+        "b": "It remains fixed at midgap",
+        "c": "It shifts toward the valence band",
+        "d": "It disappears"
       },
       "explanations": {
-        "a": "IIncorrect. Intrinsic carrier concentration is the square root of n0*p0",
-        "b": "Incorrect. Intrinsic carrier concentration is the square root of n0*p0",
-        "c": "Correct. Intrinsic carrier concentration is the square root of n0*p0",
-        "d": "Incorrect. Intrinsic carrier concentration is the square root of n0*p0"
+        "a": "Correct. In n-type materials, doping shifts the Fermi level closer to E<sub>C</sub>.",
+        "b": "Incorrect. Midgap occurs only for intrinsic semiconductors.",
+        "c": "Incorrect. That happens in p-type doping.",
+        "d": "Incorrect. Fermi level always exists."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "3. At higher temperatures T>400K, in a doped n-type semiconductor, where would the Fermi level be?",
+      "question": "The expression for intrinsic carrier concentration n<sub>i</sub> is given by:",
       "answers": {
-        "a": "Much closer to valance band",
-        "b": " Much closer on conduction band",
-        "c": "Fermi Level becomes 0 eV",
-        "d": "In the middle of conduction and valance band"
+        "a": "n<sub>i</sub> = N<sub>C</sub> + N<sub>V</sub>",
+        "b": "n<sub>i</sub> = √(N<sub>C</sub> × N<sub>V</sub>) exp(-E<sub>g</sub> / 2kT)",
+        "c": "n<sub>i</sub> = (E<sub>F</sub> - E<sub>C</sub>) / kT",
+        "d": "n<sub>i</sub> = N<sub>D</sub> - N<sub>A</sub>"
       },
       "explanations": {
-        "a": "Incorrect. Recall what happend to carrier concentration at high temp.",
-        "b": "Incorrect. Fermi level is closer to conduction band for ptype semiconductor.",
-        "c": "Incorrect.  That implies Ev is negative!!",
-        "d": "Yes, as its intrinsic."
+        "a": "Incorrect. DOS values are multiplied, not added.",
+        "b": "Correct. This is the standard expression derived from equilibrium conditions.",
+        "c": "Incorrect. That's related to electron occupancy probability.",
+        "d": "Incorrect. That gives net doping, not intrinsic concentration."
       },
-      "correctAnswer": "d",
+      "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "4. In an n-type semiconductor in the extrinsic region, given that NN<sub>D</sub> = 5 × 10<sup>16</sup> , and n<sub>i</sub> = 9.65 × 10<sup>15</sup> m⁻³, what is the hole concentration p₀?",
+      "question": "Which of the following statements is true about extrinsic semiconductors at room temperature?",
       "answers": {
-        "a": "1.72 × 10<sup>13</sup> m⁻³",
-        "b": "1.86 × 10<sup>15</sup> m⁻³",
-        "c": "2.09 × 10<sup>13</sup> m⁻³",
-        "d": "1.95 × 10<sup>15</sup> m⁻³"
+        "a": "Carrier concentration is dominated by intrinsic carriers",
+        "b": "The Fermi level lies in the middle of the bandgap",
+        "c": "Carrier concentration is primarily determined by dopant atoms",
+        "d": "Effective density of states doesn't matter"
       },
       "explanations": {
-        "a": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "b": "Correct. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "c": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'.",
-        "d": "Incorrect. Using the equations n₀ = N<sub>D</sub> and p₀ = n<sub>i</sub>² / n₀, we calculate p₀ as 1.86 × 10<sup>15</sup> m⁻³, which matches option 'b'."
+        "a": "Incorrect. Extrinsic carriers dominate at room temperature.",
+        "b": "Incorrect. That applies to intrinsic semiconductors.",
+        "c": "Correct. Doping controls the majority carrier concentration.",
+        "d": "Incorrect. DOS affects the total available states and concentration."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the purpose of plotting n<sub>0</sub>, p<sub>0</sub>, and n<sub>i</sub> against temperature in a semiconductor?",
+      "answers": {
+        "a": "To find the bandgap energy directly",
+        "b": "To visualize how mobility changes",
+        "c": "To observe regions of freeze-out, extrinsic, and intrinsic behavior",
+        "d": "To find lattice constant"
+      },
+      "explanations": {
+        "a": "Incorrect. Bandgap is inferred, not directly read.",
+        "b": "Incorrect. Carrier concentration plots don't show mobility.",
+        "c": "Correct. Such plots reveal the temperature-dependent behavior of carriers.",
+        "d": "Incorrect. Lattice properties are unrelated here."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which condition leads to degenerate semiconductor behavior?",
+      "answers": {
+        "a": "Low doping and low temperature",
+        "b": "High doping such that E<sub>F</sub> enters conduction band",
+        "c": "Temperature near 0 K",
+        "d": "Complete ionization of dopants"
+      },
+      "explanations": {
+        "a": "Incorrect. Degeneracy requires high doping.",
+        "b": "Correct. Degenerate semiconductors have Fermi level inside conduction or valence band.",
+        "c": "Incorrect. That alone does not imply degeneracy.",
+        "d": "Incorrect. Full ionization can happen without degeneracy."
       },
       "correctAnswer": "b",
-      "difficulty": "beginner"
+      "difficulty": "advanced"
+    },
+    {
+      "question": "In low-temperature regimes, why might ionization of dopants be incomplete?",
+      "answers": {
+        "a": "Donors bond with holes",
+        "b": "Donors require thermal energy to release electrons",
+        "c": "Valence band is full",
+        "d": "Electrons have no mass"
+      },
+      "explanations": {
+        "a": "Incorrect. Holes are minority in n-type, and bonding isn't the issue.",
+        "b": "Correct. At low T, insufficient thermal energy limits ionization.",
+        "c": "Incorrect. This doesn't affect donor ionization directly.",
+        "d": "Incorrect. Electron mass is nonzero and not relevant here."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "When calculating carrier concentrations in a highly doped material, what statistical model should be used?",
+      "answers": {
+        "a": "Boltzmann distribution",
+        "b": "Maxwell-Boltzmann for holes and Fermi-Dirac for electrons",
+        "c": "Fermi-Dirac distribution",
+        "d": "Gaussian distribution"
+      },
+      "explanations": {
+        "a": "Incorrect. Boltzmann breaks down in degenerate conditions.",
+        "b": "Incorrect. Both carriers must follow same distribution based on E<sub>F</sub>.",
+        "c": "Correct. Fermi-Dirac is essential in degenerate or highly doped regimes.",
+        "d": "Incorrect. Gaussian is unrelated to carrier statistics."
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
     }
   ]
 }

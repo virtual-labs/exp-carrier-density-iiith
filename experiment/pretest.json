@@ -2,71 +2,157 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "1. If Ec is the enery corresponding to conduction band and Ev is the energy corresponding to valence band. What is the fermi level of an Intrinsic semiconductor?",
+      "question": "What is meant by carrier concentration in a semiconductor?",
       "answers": {
-        "a": "Ec",
-        "b": "Ec-Ev",
-        "c": "Ec",
-        "d": "(Ec+Ev)/2"
+        "a": "Number of atoms in the material",
+        "b": "Number of free charge carriers per unit volume",
+        "c": "Total number of electrons",
+        "d": "Density of the crystal"
       },
       "explanations": {
-        "a": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "b": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "c": "Incorrect. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap.",
-        "d": "Correct. In an intrinsic semiconductor is the energy level where the probability of electron occupancy is 50% at thermal equilibrium. Since an intrinsic semiconductor has equal concentrations of electrons in the conduction band and holes in the valence band, the Fermi level lies exactly in the middle of the energy bandgap."
-      },
-      "correctAnswer": "d",
-      "difficulty": "intermidiate"
-    },
-    {
-      "question": "2. What is the effect of dopants in an n-type semiconductor?",
-      "answers": {
-        "a": "Increases the number of holes in the valence band",
-        "b": "Increases the number of electrons in the conduction band",
-        "c": "Decreases the conductivity of the semiconductor",
-        "d": "Moves the Fermi level closer to the valence band"
-      },
-      "explanations": {
-        "a": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "b": "Correct. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "c": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier.",
-        "d": "Incorrect. In an n-type semiconductor, donor dopants (such as phosphorus or arsenic in silicon) introduce extra electrons. These additional electrons increase the carrier concentration in the conduction band, enhancing the semiconductor’s conductivity. The Fermi level also shifts closer to the conduction band, making electron excitation easier."
+        "a": "Incorrect. Atoms contribute to material composition, not charge conduction.",
+        "b": "Correct. Carrier concentration refers to the number of electrons and holes available to conduct current.",
+        "c": "Incorrect. Total electrons include bound electrons, not just conduction carriers.",
+        "d": "Incorrect. Crystal density is a structural property, not electronic."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-    "question": "3. Given that f0(E)=0.8 and T=300 K, What could be the possible value of f(E) at T ≈ 320K?",
+      "question": "In an intrinsic semiconductor at equilibrium, which relation holds true?",
       "answers": {
-        "a": "0.1 eV",
-        "b": "0.7 eV",
-        "c": "0.82 eV",
-        "d": "0.9 eV"
+        "a": "n₀ > p₀",
+        "b": "p₀ > n₀",
+        "c": "n₀ = p₀",
+        "d": "n₀p₀ = 0"
       },
       "explanations": {
-        "a": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "b": "Correct. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "c": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))",
-        "d": "Incorrect. The Fermi-Dirac distribution function gives the probability that an energy states E is occupied by an electron: f(E) = 1 / (1 + exp((E - Ef) / (k * T)))"
+        "a": "Incorrect. That would suggest n-type behavior.",
+        "b": "Incorrect. That would suggest p-type behavior.",
+        "c": "Correct. In an intrinsic semiconductor, electron and hole concentrations are equal.",
+        "d": "Incorrect. That implies no conduction at all."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens to intrinsic carrier concentration as temperature increases?",
+      "answers": {
+        "a": "Decreases exponentially",
+        "b": "Increases linearly",
+        "c": "Remains constant",
+        "d": "Increases exponentially"
+      },
+      "explanations": {
+        "a": "Incorrect. Higher temperatures break bonds, generating more carriers.",
+        "b": "Incorrect. The relationship is exponential, not linear.",
+        "c": "Incorrect. Temperature strongly affects carrier generation.",
+        "d": "Correct. As temperature increases, ni increases exponentially due to thermal energy."
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In an n-type semiconductor, what mainly contributes to the electron concentration?",
+      "answers": {
+        "a": "Valence band electrons",
+        "b": "Ionized donor atoms",
+        "c": "Holes",
+        "d": "Lattice vibrations"
+      },
+      "explanations": {
+        "a": "Incorrect. Valence band electrons are mostly bound.",
+        "b": "Correct. Ionized donor atoms release electrons into the conduction band.",
+        "c": "Incorrect. Holes are minority carriers in n-type.",
+        "d": "Incorrect. Phonons affect mobility, not concentration."
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "4. Extrinsic Semiconductors conduct electricity because?",
+      "question": "Which equation gives the equilibrium electron concentration?",
       "answers": {
-        "a": "Ionisation energy required by carrier is higher",
-        "b": "Ionisation energies of silicon atoms change",
-        "c": "Carriers ionize easily at room temperature",
-        "d": "None"
+        "a": "n₀ = N<sub>C</sub> exp((E<sub>C</sub> - E<sub>F</sub>)/kT)",
+        "b": "n₀ = N<sub>C</sub> exp((E<sub>F</sub> - E<sub>C</sub>)/kT)",
+        "c": "n₀ = N<sub>V</sub> exp((E<sub>V</sub> - E<sub>F</sub>)/kT)",
+        "d": "n₀ = E<sub>F</sub> × N<sub>C</sub>"
       },
-      "explanations": 
-      {"a": "Incorrect. Ionisation energy for electron and holes decreases.",
-        "b": "Incorrect. Silicon ionisation energy for valence electron does not change",
-        "c": "Correct. Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction.",
-        "d": "Incorrect. Extrinsic semiconductors are doped with impurities to increase their conductivity.In n-type semiconductors, donor atoms provide extra electrons, making electrons the majority charge carriers.In p-type semiconductors, acceptor atoms create holes, making holes the majority charge carriers.These charge carriers (electrons or holes) move under the influence of an electric field, enabling electrical conduction."},
+      "explanations": {
+        "a": "Incorrect. That expression gives a decaying exponential in the wrong direction.",
+        "b": "Correct. This is the correct expression for n₀ from Fermi-Dirac statistics in non-degenerate semiconductors.",
+        "c": "Incorrect. That’s used for p₀ (hole concentration).",
+        "d": "Incorrect. Carrier concentration isn't linearly related to Fermi level."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does the mass action law state about n₀ and p₀?",
+      "answers": {
+        "a": "n₀p₀ = 0",
+        "b": "n₀ = p₀",
+        "c": "n₀p₀ = n<sub>i</sub><sup>2</sup>",
+        "d": "n₀p₀ = n<sub>i</sub>"
+      },
+      "explanations": {
+        "a": "Incorrect. Carrier product is never zero.",
+        "b": "Incorrect. Only true for intrinsic semiconductors.",
+        "c": "Correct. The product of electron and hole concentrations equals the square of intrinsic carrier concentration.",
+        "d": "Incorrect. It is the square of n<sub>i</sub>, not n<sub>i</sub> itself."
+      },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In a degenerate n-type semiconductor, which assumption breaks down?",
+      "answers": {
+        "a": "E<sub>F</sub> is above E<sub>C</sub>",
+        "b": "Boltzmann approximation is valid",
+        "c": "n₀ ≈ N<sub>D</sub>",
+        "d": "All donors are ionized"
+      },
+      "explanations": {
+        "a": "Incorrect. That’s true in degenerate conditions.",
+        "b": "Correct. Boltzmann statistics no longer hold when E<sub>F</sub> is close to or above E<sub>C</sub>.",
+        "c": "Incorrect. That still applies if donors are fully ionized.",
+        "d": "Incorrect. Donor ionization can still be valid at moderate temperatures."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What behavior is observed in carrier concentration vs temperature in n-type semiconductors?",
+      "answers": {
+        "a": "Constant rise with temperature",
+        "b": "Initial rise, then saturation",
+        "c": "Parabolic increase",
+        "d": "Flat then exponential fall"
+      },
+      "explanations": {
+        "a": "Incorrect. It doesn't increase indefinitely.",
+        "b": "Correct. It rises in the freeze-out region, saturates in the extrinsic region, and rises again in the intrinsic region.",
+        "c": "Incorrect. Behavior is not parabolic.",
+        "d": "Incorrect. Carrier concentration increases with temperature eventually."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "At very high temperature, a doped semiconductor behaves like:",
+      "answers": {
+        "a": "An insulator",
+        "b": "An intrinsic semiconductor",
+        "c": "A metal",
+        "d": "A rectifier"
+      },
+      "explanations": {
+        "a": "Incorrect. Carrier concentration increases, not decreases.",
+        "b": "Correct. Intrinsic carrier generation dominates, and the influence of doping diminishes.",
+        "c": "Incorrect. Metals have no bandgap.",
+        "d": "Incorrect. Rectifier behavior depends on junction, not temperature alone."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
     }
   ]
 }
