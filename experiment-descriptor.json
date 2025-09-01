@@ -28,6 +28,13 @@
       "content-type": "assesment"
     },
     {
+      "target": "procedure.html",
+      "source": "procedure.md",
+      "label": "Procedure",
+      "unit-type": "task",
+      "content-type": "text"
+    },
+    {
       "target": "simulation.html",
       "source": "simulation/test.html",
       "label": "Simulation",
