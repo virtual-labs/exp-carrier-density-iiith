@@ -1508,7 +1508,7 @@
                             </span>
                         </label>
                         <div class="slider-container">
-                            <input type="range" id="doping" min="14" max="19" step="0.1" value="16">
+                            <input type="range" id="doping" min="14" max="19" step="0.25" value="16">
                             <div class="value-display" id="dopingValue">1.0×10¹⁶</div>
                         </div>
                     </div>
@@ -2684,10 +2684,10 @@
             
             fillBlanks: [
                 {
-                    q: "The mass action law states that n × p = ____",
-                    blanks: ["ni²", "ni^2"],
+                    q: "The mass action law states that n × p = ____ (Use ^ for exponents, e.g., ni^2)",
+                    blanks: ["ni²", "ni^2", "ni2"],
                     explanation: "This fundamental law: np = ni² maintains charge neutrality in thermal equilibrium.",
-                    hint: "This relationship holds for both intrinsic and extrinsic semiconductors."
+                    hint: "This relationship holds for both intrinsic and extrinsic semiconductors. Use ni^2 or ni² format."
                 },
                 {
                     q: "In an intrinsic semiconductor at equilibrium, n = p = ____",
@@ -2712,6 +2712,60 @@
                     blanks: ["Nd", "nd"],
                     explanation: "In heavily doped n-type material, nearly all donors ionize: n ≈ Nd when Nd >> ni.",
                     hint: "Each donor atom contributes one electron when fully ionized."
+                },
+                {
+                    q: "The Fermi level in n-type semiconductors is located ____ (above/below) the intrinsic Fermi level.",
+                    blanks: ["above"],
+                    explanation: "In n-type semiconductors, the Fermi level moves toward the conduction band, positioned above Ei.",
+                    hint: "More electrons means higher energy states are occupied, pushing Fermi level upward."
+                },
+                {
+                    q: "For p-type silicon with Na >> ni, the hole concentration is approximately ____",
+                    blanks: ["Na", "na"],
+                    explanation: "In heavily doped p-type material, nearly all acceptors ionize: p ≈ Na when Na >> ni.",
+                    hint: "Each acceptor atom contributes one hole when fully ionized."
+                },
+                {
+                    q: "The charge neutrality equation for a doped semiconductor is: p - n + ____ - ____ = 0",
+                    blanks: ["Nd+", "Na-", "nd+", "na-"],
+                    explanation: "Charge neutrality: p - n + Nd+ - Na- = 0, where Nd+ and Na- are ionized dopants.",
+                    hint: "Positive charges include holes and ionized donors; negative charges include electrons and ionized acceptors."
+                },
+                {
+                    q: "Germanium has a band gap of ____ eV at 300K.",
+                    blanks: ["0.66", "0.67"],
+                    explanation: "Germanium's band gap is 0.66 eV at 300K, smaller than Silicon's 1.12 eV.",
+                    hint: "This smaller band gap makes Ge have higher intrinsic carrier concentration than Si."
+                },
+                {
+                    q: "GaAs has a band gap of ____ eV at 300K.",
+                    blanks: ["1.42", "1.43"],
+                    explanation: "GaAs has a band gap of 1.42 eV, slightly larger than Silicon but with superior electron mobility.",
+                    hint: "GaAs is used in high-speed and optoelectronic devices."
+                },
+                {
+                    q: "At thermal equilibrium, the product of electron and hole concentrations equals ____",
+                    blanks: ["ni²", "ni^2", "ni2"],
+                    explanation: "The mass action law states that at thermal equilibrium: np = ni², regardless of doping.",
+                    hint: "This is the mass action law - use ni^2 or ni² format."
+                },
+                {
+                    q: "The majority carriers in n-type semiconductors are ____",
+                    blanks: ["electrons"],
+                    explanation: "In n-type materials, electrons are the majority carriers due to donor doping.",
+                    hint: "N-type = Negative charge carriers = Electrons."
+                },
+                {
+                    q: "The majority carriers in p-type semiconductors are ____",
+                    blanks: ["holes"],
+                    explanation: "In p-type materials, holes are the majority carriers due to acceptor doping.",
+                    hint: "P-type = Positive charge carriers = Holes."
+                },
+                {
+                    q: "In a degenerate semiconductor, the Fermi level is located ____ (inside/outside) the energy bands.",
+                    blanks: ["inside", "within", "in"],
+                    explanation: "At very high doping levels (>10^18 cm⁻³), the Fermi level can enter the conduction or valence bands.",
+                    hint: "Degenerate semiconductors have metal-like properties with Fermi level inside the bands."
                 }
             ],
             
@@ -2749,11 +2803,11 @@
                     hint: "Use the mass action law: np = ni²"
                 },
                 {
-                    q: "If temperature increases from 300K to 400K, and ni increases by factor of 100, what is the new Fermi level shift in eV?",
-                    answer: "0.12",
-                    tolerance: 0.02,
-                    explanation: "ΔEF = kT×ln(ni_new/ni_old) = 0.0345×ln(100) = 0.12 eV (for intrinsic case)",
-                    hint: "Use EF = kT × ln(ni_new/ni_old) where kT = 0.0345 eV at 400K"
+                    q: "In p-type silicon with Na = 5×10¹⁵ cm⁻³ at 300K (ni = 1.08×10¹⁰ cm⁻³), calculate the minority carrier (electron) concentration in cm⁻³:",
+                    answer: "2.33e4",
+                    tolerance: 0.5e4,
+                    explanation: "Using np = ni²: n = ni²/p = ni²/Na = (1.08×10¹⁰)²/(5×10¹⁵) = 2.33×10⁴ cm⁻³",
+                    hint: "Use mass action law: np = ni². For p-type with Na >> ni, p ≈ Na, so n = ni²/Na"
                 },
                 {
                     q: "Calculate the electron concentration in silicon at 350K if ni increases to 3×10¹¹ cm⁻³ with Nd = 10¹⁵ cm⁻³:",
@@ -2952,7 +3006,7 @@
                     <div class="challenge-icon">✏️</div>
                     <div>
                         <h3 class="challenge-title">Fill in the Blanks</h3>
-                        <p class="challenge-description">Complete the carrier concentration equations and concepts.</p>
+                        <p class="challenge-description">Complete the carrier concentration equations and concepts. <strong>Tip:</strong> Use <code>^</code> for exponents (e.g., ni^2 for ni²)</p>
                     </div>
                 </div>
                 <div id="fillBlanksContent"></div>

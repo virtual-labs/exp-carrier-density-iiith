@@ -13,7 +13,7 @@ $$<br>
 where
 <b>f<sub>o</sub>(E)</b> is the fermi function for a given energy level,<br> 
 <b> E<sub>f</sub> </b> is the fermi level,<br> 
-<b> k<sub>B</sub> </b> is the Botzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K and <br>
+<b> k<sub>B</sub> </b> is the Boltzmann's constant whose value is 1.38* 10<sup>-23</sup> J/K and <br>
 <b> T </b> is the temperature.<br>
 
 The fermi level is the energy for which the probability of electron occupying the state is 1/2
@@ -73,7 +73,7 @@ $$<br>
 
 Here, N<sub>C</sub> is the effective density of states in the conduction band.
 $$
-N_{C} = 2(\frac{m^{*}_{n}k_{B}T}{2\pi\hbar^{2}})^{3/2} 
+N_{C} = 2(\frac{2\pi m^{*}_{n}k_{B}T}{h^{2}})^{3/2} 
 $$
 
 $$
@@ -117,9 +117,9 @@ $$
 \tag{3.11}
 $$<br>
 
-where, N<sub>v</sub> is the effective density of stes in the valence band
+where, N<sub>v</sub> is the effective density of states in the valence band
 $$
-N_{V} = 2(\frac{m_{v}^{2}k_{B}T}{2\pi \hbar^{2}})^{3/2} 
+N_{V} = 2(\frac{2\pi m^{*}_{p}k_{B}T}{h^{2}})^{3/2} 
 $$
 
 $$
@@ -167,7 +167,7 @@ Equilibrium carrier densities refer to the number of carriers in the conduction 
 density of states for given energy range gives holes concentration.
 
 ### Equilibrium Carrier Density Product 
-If n<sub>o</sub> and p<sub>o</sub> are the equillibrium concentration of elevtrons and holes respectively, the product is obatined by multiplying electron and hole concentrations
+If n<sub>o</sub> and p<sub>o</sub> are the equilibrium concentration of electrons and holes respectively, the product is obtained by multiplying electron and hole concentrations
 $$
 n_{o}p_{o} = N_{C}e^{E_{F}-E_{C}/k_{B}T} \cdot N_{V}e^{E_{V}-E_{F}/k_{B}T} 
 $$
@@ -184,7 +184,7 @@ $$
 \tag{3.18}
 $$<br>
 
-The carrier product in the left-hand-side of th ebove equation is the intrinsic(undoped) silicon carrier concentration n<sub>i</sub> and as we know bandgap energy 
+The carrier product in the left-hand-side of the above equation is the intrinsic(undoped) silicon carrier concentration n<sub>i</sub> and as we know bandgap energy 
 $$
 E_{G} = E_{C} - E_{V} 
 $$
@@ -282,11 +282,11 @@ $$
 \tag{3.28}
 $$<br>
 
-Dopant concentration is N<sub>D</sub> and acceptor concertation is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized latter’s concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
+Dopant concentration is N<sub>D</sub> and acceptor concentration is N<sub>A</sub>. Ideally all the dopant atoms ionize and contribute electron/hole for conduction leaving behind a charged center. Let the ionized donor concentration be N<sub>D</sub><sup>+</sup> or N<sub>A</sub><sup>-</sup><br>
 The total carrier concentration is always represented by 𝑛 for free electrons and 𝑝 for free holes. Intrinsically electron-hole pairs are formed maintaining charge neutrality.<br>
 
 ### Ionisation of Dopant and Temperature Dependence
 
-Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as intrinsic region. Also, in intrinsic region (T >400 K), at a particular temperature intrinsic carrier concentration becomes comparable to donor concentration (for n type) and accepector concentration(for p type).
+Ionisation of dopant with increase in temperature is shown below. At 0K, there is no ionization of the dopant impurities nor of any Silicon atom, as a result the semiconductor has almost zero carriers (called Freeze Out). As temperature increases slowly 0-100 K, only the dopant impurities start ionizing and result in an increase in number of carriers until all dopants are ionized (n=N_D) (100K < T < 400K). Contribution by silicon atoms is not much at these temperatures. However, at much higher temperatures (T >400 K), silicon also starts to generate large number of electron hole pair and total carrier concentration increases drastically. This is shown by region marked as intrinsic region. Also, in intrinsic region (T >400 K), at a particular temperature intrinsic carrier concentration becomes comparable to donor concentration (for n type) and acceptor concentration(for p type).
 
-<div align="center"><img src="images/Fig_3.3.png" width="400ps" height="auto"></div> 
+<div align="center"><img src="images/Fig_3.3.png" width="700px" height="auto"></div> 
