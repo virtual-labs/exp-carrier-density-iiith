@@ -1,0 +1,374 @@
+
+.toolbar-item-list {
+    padding: 2% 5%;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: start;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .edge-component {
+    width: 100px;
+    height: 45px;
+    border-radius: 0.75em;
+    border: 0.2rem solid black;
+    margin: 0.5rem 0.5rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-align: center;
+    padding-top: 2%;
+    color: "black";
+    background-color: rgb(202, 252, 202);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  button {
+    padding: 10px;
+    border-left: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .tabs-size{
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    font-size: 15px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .edge-component {
+      width: 60px;
+      height: 30px;
+      font-size: 0.75rem;
+      padding-top: 1%;
+      background-size: 100%;
+    }
+    .tabs-size{
+      font-size: 11px;
+    }
+    .tooltiptext{
+      width: 60px;
+      top: 70%;
+    }
+    .button-margin{
+      margin-left: 1%;
+      margin-right: 1%;
+      font-size: 12px;
+    }
+  }
+  
+  .failure-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .v-instruction-container {
+    margin-top: 40px;
+    border: .2rem solid #97d23d;
+    justify-content: flex-start;
+  }
+  
+  .v-collapsible {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .instruction-list{
+    text-align: left; 
+    padding-left: 10%; 
+    padding-right: 10%;
+  }
+  
+  .practice-main-container {
+    height: 95vh;
+    width: 100%;
+    border: 0.2rem solid #97d23d;
+    border-radius: 1rem;
+    background-color: #f1f1f1;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-self: auto;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  
+  .practice-top-container {
+    width: 100%;
+    height: 4%;
+  }
+  
+  .practice-array-container {
+    width: 100%;
+    height: 26%;
+  }
+  
+  .practice-main-content-container {
+    width: 100%;
+    height: 65%;
+  }
+  
+  .practice-bottom-container {
+    width: 100%;
+    height: 5%;
+  }
+  
+  .text-demo {
+    font-size: 1.5rem;
+    fill: black;
+    font-weight: bold;
+  }
+  
+  .array-demo {
+    stroke-width: 3px;
+    fill: #29e;
+    stroke: black;
+  }
+  
+  .array-text {
+    font-size: 1.5rem;
+    fill: black;
+    font-weight: bold;
+  }
+  
+  .exercise-main-container {
+    height: 95vh;
+    width: 100%;
+    border: 0.2rem solid #97d23d;
+    border-radius: 1rem;
+    background-color: #f1f1f1;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .exercise-top-container {
+    width: 100%;
+    height: 8%;
+  }
+  
+  .exercise-middle-container {
+    width: 100%;
+    height: 85%;
+  }
+  
+  .exercise-bottom-container {
+    width: 100%;
+    height: 7%;
+  }
+  
+  .centered-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tabs-info{
+    cursor: not-allowed;
+  }
+  
+  .instruction-list{
+    text-align: left; 
+    padding-left: 10%; 
+    padding-right: 10%;
+  }
+
+  .graph-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .fixed-graph {
+    border: 1px solid #ccc;
+  }
+  
+  /* Dot Container */
+  .dot-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  /* Dots */
+  .dot {
+    width: 5px;
+    height: 5px;
+    background-color: blue;
+    border-radius: 50%;
+    position: relative;
+    margin: 15px 0;
+    cursor: grab;
+  }
+  
+  .dot:active {
+    cursor: grabbing;
+  }
+  
+  /* Instructions Dropdown */
+  .tabs-size {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+   /* Additional custom styles */
+   .custom-container {
+    height: 95vh;
+    width: 100%;
+    border: 0.2rem solid #97d23d;
+    border-radius: 1rem;
+    background-color: #f1f1f1;
+    display: -webkit-flex;
+    display: flex;
+    
+    align-self: auto;
+  }
+  .v-datalist-container {
+    background-color: #fff; /* Ensure a white background for the chart container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .dot-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  .dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%;
+    cursor: grab;
+  }
+  .submit-button {
+    margin-top: 20px;
+    text-align: center;
+    margin-left:50%
+  }
+
+  #submitButton {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#outputMessage {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+.next-page-button {
+  margin-top: 20px;
+  text-align: center;
+}
+.v-datalist-row {
+    position: relative; /* Relative position for containing absolutely positioned elements */
+}
+/* Default styles for input fields */
+.input-overlay {
+    position: absolute;
+    transform: translate(-50%, -50%); /* Center at the specified position */
+    width: 10%; /* Width as a percentage of the canvas */
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border: 1px solid #97d23d; /* Green border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding inside the input */
+}
+
+/* Position input fields relative to the canvas */
+.input-overlay1 {
+    top: 45%; /* Adjust percentages based on the desired position */
+    left: 20%;
+}
+
+.input-overlay2 {
+    top: 45%;
+    left: 50%;
+}
+
+.input-overlay3 {
+    top: 45%;
+    left: 80%;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .input-overlay {
+        width: 15%; /* Increase input size for better usability on small screens */
+    }
+
+    .input-overlay1 {
+        top: 50%; /* Adjust positions for smaller screens */
+        left: 25%;
+    }
+
+    .input-overlay2 {
+        top: 50%;
+        left: 50%;
+    }
+
+    .input-overlay3 {
+        top: 50%;
+        left: 75%;
+    }
+}
+
+/* Media queries for very small screens (e.g., mobile devices) */
+@media (max-width: 480px) {
+    .input-overlay {
+        width: 20%; /* Further increase input size */
+    }
+
+    .input-overlay1 {
+        top: 55%;
+        left: 30%;
+    }
+
+    .input-overlay2 {
+        top: 55%;
+        left: 50%;
+    }
+
+    .input-overlay3 {
+        top: 55%;
+        left: 70%;
+    }
+}

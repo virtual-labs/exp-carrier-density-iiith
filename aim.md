@@ -1,0 +1,2 @@
+
+To understand and visualize equilibrium carrier concentration in semiconductors, and explore how it is affected by various factors such as doping, temperature, and material properties. This experiment will also introduce related concepts like Fermi level, effective density of states, extrinsic semiconductors, degenerate semiconductors, and ionization.
